@@ -289,7 +289,10 @@ class DataType(Enum):
     # 4-bit data-types
     UINT4 = 21  # Unsigned integer in range [0, 15]
     INT4 = 22
-FLOAT_TYPES=[DataType.BFLOAT16,DataType.DOUBLE,DataType.FLOAT,DataType.FLOAT16,DataType.FLOAT8E4M3FN,DataType.FLOAT8E4M3FNUZ,DataType.FLOAT8E5M2FNUZ,DataType.FLOAT8E5M2,DataType.BFLOAT16]
+    FLOAT4E2M1 = 23
+    
+    
+FLOAT_TYPES=[DataType.BFLOAT16,DataType.DOUBLE,DataType.FLOAT,DataType.FLOAT16,DataType.FLOAT8E4M3FN,DataType.FLOAT8E4M3FNUZ,DataType.FLOAT8E5M2FNUZ,DataType.FLOAT8E5M2,DataType.BFLOAT16,DataType.FLOAT4E2M1]
 INT_TYPES = [DataType.INT4,DataType.INT8,DataType.INT16,DataType.INT32,DataType.INT64]
 UINT_TYPES = [DataType.UINT4,DataType.UINT8,DataType.UINT16,DataType.UINT16,DataType.UINT64]
 COMPLEX_TYPES=[DataType.COMPLEX64,DataType.COMPLEX128]
@@ -297,9 +300,14 @@ COMPLEX_TYPES=[DataType.COMPLEX64,DataType.COMPLEX128]
 
 INT_32_TYPES = [DataType.INT32, DataType.INT16, DataType.INT8, DataType.INT4, DataType.UINT16, DataType.UINT8, 
                 DataType.UINT4, DataType.BOOL, DataType.FLOAT16, DataType.BFLOAT16, DataType.FLOAT8E4M3FN, 
-                DataType.FLOAT8E4M3FNUZ, DataType.FLOAT8E5M2, DataType.FLOAT8E5M2FNUZ]
+                DataType.FLOAT8E4M3FNUZ, DataType.FLOAT8E5M2, DataType.FLOAT8E5M2FNUZ,DataType.FLOAT4E2M1]
 
 LABELS_DATA={DataType.FLOAT,DataType.UNDEFINED,DataType.BOOL,DataType.DOUBLE,DataType.STRING}
+
+FLOAT4E2M1_VALUES = {
+    0.0, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0,
+   -0.0, -0.5, -1.0, -1.5, -2.0, -3.0, -4.0, -6.0
+}
 
 ONE_ELEMENT = FLOAT_TYPES.copy()
 ONE_ELEMENT.extend(INT_TYPES)
@@ -599,6 +607,15 @@ def check_float_size(value: float, type: DataType) -> bool:
         if np.isinf(value):
             return False  # No se permite inf
         return np.finfo(np.float32).min <= value <= np.finfo(np.float32).max or np.isnan(value)
+    elif type == DataType.FLOAT4E2M1:
+        return value in FLOAT4E2M1_VALUES
+
+    return False
+
+
+
+def is_valid_float4e2m1(value: float) -> bool:
+    return value in FLOAT4E2M1_VALUES
     
     
 def check_list_data_type(tensor,type:DataType,storage_param:str,is_list:bool,start_error_messege:str=""):    
