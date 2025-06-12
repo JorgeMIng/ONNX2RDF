@@ -1,0 +1,55 @@
+{
+    "@context": "https://w3id.org/codemeta/3.0",
+    "applicationCategory": "SoftwareSourceCode",
+    "author": [
+        {
+            "affiliation": {
+                "name": "Universidad Politécnica de Madrid",
+                "@type": "Organization"
+            },
+            "email": "jorge.martin.izquierdo@upm.es",
+            "familyName": "Martín Izquierdo",
+            "givenName": "Jorge",
+            "@id": "https://orcid.org/0009-0005-7696-8995",
+            "@type": "Person"
+        }
+    ],
+    "codeRepository": "git+https://github.com/JorgeMIng/ONNX2RDF",
+    "dateCreated": "2025-06-12",
+    "dateModified": "2025-06-12",
+    "datePublished": "2025-06-12",
+    "description": "ONNX2RDF is a pipeline for converting ONNX files to a RDF format.",
+    "keywords": [
+        {
+            "name": "ONNX",
+            "@id": "https://onnx.ai",
+            "@type": "DefinedTerm"
+        },
+        {
+            "name": "RDF",
+            "@id": "https://www.w3.org/TR/rdf-schema/",
+            "@type": "DefinedTerm"
+        }
+    ],
+    "license": "https://spdx.org/licenses/Apache-2.0",
+    "name": "ONNX2RDF",
+    "operatingSystem": [
+        "Linux",
+        "Windows"
+    ],
+    "programmingLanguage": [
+        "Java",
+        "Python 3"
+    ],
+    "softwareRequirements": [
+        {
+            "name": "RMLio/yarrrml-parser",
+            "version": "v1.10.0"
+        }
+    ],
+    "version": "0.1.0",
+    "developmentStatus": "wip",
+    "isSourceCodeOf": "Hugginface ONNX2RDF Parser",
+    "issueTracker": "https://github.com/JorgeMIng/ONNX2RDF/issues",
+    "@type": "SoftwareSourceCode"
+}
