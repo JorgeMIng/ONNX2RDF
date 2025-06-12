@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ONNX2RDF"
+version = "0.0.1"
+description = "ONNX to rdf parser"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.13"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Jorge M", email = "jorge.martin.izquierdo@upm.es"},
+]
+dependencies = [
+    "onnx==1.18.0",
+    "onnxruntime==1.22.0",
+    "ruamel.yaml==0.18.10",
+    "pathvalidate==3.2.3"
+]
+
+[project.urls]
+# Uncomment and update with your actual URL
+Homepage = "https://github.com/JorgeMIng/ONNX2RDF"
+
+[tool.setuptools]
+packages = { find = {} }
+
+
+[tool.setuptools.package-data]
+ONNX2RDF = [
+    "mappings/*.*",
+    "ontology/*.*",
+    "rmlmapper-7.3.1-r374-all.jar"
+]
+
+[project.scripts]
+onnx-parser = "ONNX2RDF.parser:call_main_with_args"

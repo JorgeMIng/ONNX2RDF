@@ -175,7 +175,7 @@ cython_debug/
 
 
 #ONNX2RDF Folders
-logs/
-rdfs/
-errors/
-tmp/
+**logs/
+**rdfs/
+**errors/
+**tmp/

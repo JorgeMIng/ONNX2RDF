@@ -97,9 +97,6 @@ def cleanup_handlers(logger):
         handler.close()
         logger.removeHandler(handler)        
  
-            
-# Example usage
-
 
 
 def combine_work_folder(work_folder,path,file_name=""):
@@ -126,7 +123,7 @@ import os
 def remove_empty_dirs(base_path, target_dir):
     base_path = os.path.abspath(base_path)
     target_path = os.path.abspath(os.path.join(base_path, target_dir)) if not os.path.isabs(target_dir) else os.path.abspath(target_dir)
-    # Ensure the target is within the base path
+  
     if os.path.commonpath([base_path, target_path]) != base_path:
         raise ValueError(f"Target path '{target_path}' is not within base path '{base_path}'")
 
@@ -135,7 +132,7 @@ def remove_empty_dirs(base_path, target_dir):
         try:
             os.rmdir(current)
         except OSError:
-            break  # Stop if we can't remove a directory (e.g., due to permissions)
+            break  
         current = os.path.dirname(current)
 
 def remove_folder_rec(folder,work_dir,model_name_path):
@@ -209,14 +206,14 @@ class RDF_formats(Enum):
 
 FORMATS_EXTENSIONS = {
         'nquads': '.nq',
-        'turtle': '.ttl',  # Turtle format maps to .ttl
+        'turtle': '.ttl',  
         'trig': '.trig',
         'trix': '.trix',
         'jsonld': '.jsonld',
         'hdt': '.hdt'
     }
 def get_extension(output_format:Union[RDF_formats, str]):
-    # Return the corresponding file extension or None if format is not recognized
+   
     if isinstance(output_format,RDF_formats):
         str_format=output_format.value
     else:
@@ -226,10 +223,6 @@ def get_extension(output_format:Union[RDF_formats, str]):
 
 
 import subprocess
-#mapping_path = path to yaml file
-# mapping_name = name
-
-    
 
 
 def parse_args():
@@ -336,7 +329,7 @@ def get_onnx_file(directory, recursive=False,name_model=None,cache_activated=Fal
     for file in paths:
         relative_folder = file.parent.relative_to(base)
         
-        file_stem = file.stem  # filename without extension
+        file_stem = file.stem  
         if relative_folder.parts:
             identifier = f"{str(relative_folder).replace(os.sep, FILE_CACHE_SEPARATOR)}{FILE_CACHE_SEPARATOR}{file_stem}"
         else:
@@ -381,7 +374,6 @@ def validate_path_arg(arg_name):
                 raise ValueError(f"Argument '{arg_name}' must be a non-empty string.")
 
             try:
-                # This checks for OS-level invalid paths (but not existence)
                 validate_filepath(path)
             except ValidationError as e:
                 raise ValueError(f"Invalid path in argument '{arg_name}': {e}")
@@ -390,7 +382,20 @@ def validate_path_arg(arg_name):
         return wrapper
     return decorator
 import signal
-signals_to_catch = list(signal.valid_signals())
+import platform
+if platform.system().lower() == "windows":
+    signals_to_catch = [signal.SIGINT, signal.SIGTERM, signal.SIGBREAK,signal.SIGABRT]
+    dump_redirect = "> nul 2>&1"
+else:
+    signals_to_catch = [
+            signal.SIGINT,     # Ctrl+C
+            signal.SIGTERM,    # kill <pid> or default docker stop
+            signal.SIGQUIT,    # Ctrl+\
+            signal.SIGHUP,     # Terminal closed / systemd reload
+            signal.SIGABRT,    # abort()
+            signal.SIGPIPE     # Broken pipe
+        ]
+    dump_redirect = "> /dev/null 2>&1"
 
 
 
@@ -480,7 +485,6 @@ class ONNX2RDFParser():
         return combine_work_folder(self.work_folder,self.target_path)
     @validate_path_arg('path')
     def set_work_folder(self,path:str):
-        # in case work_folder is relativer to actual work_folder
         path = combine_work_folder(os.getcwd(),path)
         self.work_folder=path
         os.makedirs(path,exist_ok=True)
@@ -555,7 +559,7 @@ class ONNX2RDFParser():
         proc = subprocess.Popen(command,shell=True)
         try:
             while proc.poll() is None:
-                time.sleep(0.5)  # avoid busy waiting
+                time.sleep(0.5)  
                 self.__check_is_stoped__()
         except Exception:
             proc.terminate()
@@ -582,7 +586,8 @@ class ONNX2RDFParser():
         self.set_tmp_folder(args.tmp_folder)
         self.set_verbose(args.verbose)
         self.set_stop_parsing(args.stop_parsing)
-        self.set_work_folder(args.work_folder)
+        if args.work_folder and args.work_folder != "":
+            self.set_work_folder(args.work_folder)
         self.set_to_console(args.to_console)
         
     @staticmethod
@@ -660,7 +665,7 @@ class ONNX2RDFParser():
             extra_mapping_str = f"-i {' -i '.join(extra_mappings)}"
         
         if not cache or not exists_file:
-            comando = f"yarrrml-parser -i {mapping_path} {extra_mapping_str} -o {ttl_mapping_path} > NUL 2>&1 "
+            comando = f"yarrrml-parser -i {mapping_path} {extra_mapping_str} -o {ttl_mapping_path} {dump_redirect} "
             self.run_command(comando)
         
         return ttl_mapping_path,cache_activated
@@ -682,7 +687,10 @@ class ONNX2RDFParser():
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         os.makedirs(os.path.dirname(ttl_mapping_path), exist_ok=True)
         
-        comando = f"yarrrml-parser -i {yarrml_path} -o {ttl_mapping_path} > NUL 2>&1 "
+        
+        
+        
+        comando = f"yarrrml-parser -i {yarrml_path} -o {ttl_mapping_path} {dump_redirect} "
         self.run_command(comando)
       
         comando = f"java -Xmx{max_ram} -jar {rml_parser} -m {ttl_mapping_path} -o {output_path} -s {self.get_rdf_format().value}"
@@ -712,7 +720,6 @@ class ONNX2RDFParser():
         comando = f"java -Xmx{max_ram} -jar {rml_parser} -m {mapping_path} {extra_mapping_str} -o {output_path} -s {output_format.value}"
         if verbose:
             comando = comando +" -v"
-        # Ejecutar el comando
         self.run_command(comando)
         return output_path
         
@@ -746,7 +753,6 @@ class ONNX2RDFParser():
         stop_parsing=self.stop_parsing
         
         
-        # For creating reports
         run_info=dict()
         
         run_info["input_file_path"]=input_file_path
@@ -794,11 +800,9 @@ class ONNX2RDFParser():
           
         self.logger =setup_logging(log_paths,to_console=to_console,error_file=error_log_file,id_process=id_process)
         logger=self.logger
-        if not log_extra:
-            # do no keep logging extra files
+        if not log_extra:   
             log_dirs=[] 
         if log_persistant and log_extra:
-            #only add extra files to folder with time-stamps
             log_dirs=time_folder
         
             
@@ -832,8 +836,7 @@ class ONNX2RDFParser():
 
         logger.info(f"ONNX loading/cleaning started | Model:({model_name_path})")
         
-        #information used for error reports
-        
+
         
         start_load=time.time()
         
@@ -920,8 +923,6 @@ class ONNX2RDFParser():
         try:
             self.__check_is_stoped__()
             uri_name = model_name_path.replace(FILE_CACHE_SEPARATOR,".")
-            #uri_name = uri_name.replace("/",".")
-            #uri_name = uri_name.replace("\\",".")
             model_uri = f"{base_resource_url}{uri_name}/"
             
             mapping_path,cache_activated_copy_edit = copy_edit_mappings(yarrml_mapping,work_folder,pre_tmp_path,id_process=id_process,
@@ -1030,19 +1031,32 @@ class ONNX2RDFParser():
     def set_multiple_singal(self,signal_types:list[signal.Signals],handle):
         if threading.current_thread() == threading.main_thread():
             for signal_type in signal_types:
-                signal.signal(signal_type,handle)
+                if ONNX2RDFParser.is_signal_editable(signal_type):
+                    signal.signal(signal_type,handle)
     def store_original_handlers(self,signal_types:list[signal.Signals]):
         for signal_type in signal_types:
             self._original_handler[signal_type]=signal.getsignal(signal_type)
+    @staticmethod       
+    def is_signal_editable(signal_type):
+        value = None
+        if isinstance(signal_type,signal.Signals):
+            value = signal_type.value
+        if isinstance(signal_type,int):
+            value = signal_type
+        return value and value!=9 and value!=19
+        
     def restore_multiple_singal(self,signal_types:list[signal.Signals]):
         if threading.current_thread() == threading.main_thread():
             for signal_type in signal_types:
-                signal.signal(signal_type,self._original_handler[signal_type]) 
-    
-    
+                if ONNX2RDFParser.is_signal_editable(signal_type):
+                    signal.signal(signal_type,self._original_handler[signal_type]) 
+
+
     def parse_file(self,model_path,model_name=None,base_resource_url=None,id_process="",extra_files=[]):
         result_entries=[]
         try:
+            
+            error_if_no_java()
             
             self.store_original_handlers(signals_to_catch)
             self.set_multiple_singal(signals_to_catch,self.__signal_handler__)
@@ -1136,8 +1150,6 @@ def __get_all_uri_models__(onnx_files):
     uris=[]
     for onnx_file in onnx_files:
         path = onnx_file[0].replace(FILE_CACHE_SEPARATOR,".")
-        #path = path.replace("/",".")
-        #path = path.replace("\\",".")
         uris.append(path)   
     return uris
         
@@ -1246,3 +1258,11 @@ if __name__ == "__main__":
     
     # Ejecutar la función call_main_with_args solo cuando se ejecuta como script
     call_main_with_args()
+
+
+
+def error_if_no_java():
+    try:
+        subprocess.run(["java", "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+    except Exception:
+        raise RuntimeError("⚠️ WARNING: Java (OpenJDK) not found. This package may not work correctly without Java.")

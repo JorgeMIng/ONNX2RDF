@@ -1,5 +1,5 @@
 import os
-from json_util import save_json,load_json,find_key_value,get_log_paths
+from json_util import save_json,load_json,get_log_paths
 from util_process.util import remove_extra_params
 
 from util_process.operators import find_operators,get_key_operator,is_domain_ONNX,get_correct_status
@@ -97,10 +97,6 @@ def add_entry_if_exists(dict_instance,key,entity,new_key=None):
 
 def __fill_status_codes(data):
     
-    #empty data for quick mapping
-    
-    
-    
     data["operator_types"]=[]
     type_list=data["operator_types"]
     for tensor_type in OperatorStatus:
@@ -193,7 +189,6 @@ def __fill_operator_metadata__(data):
         
         data["operators"].append(operator_entry)
     
-    ## add metadata at the file
                 
  
  

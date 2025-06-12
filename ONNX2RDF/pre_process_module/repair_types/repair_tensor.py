@@ -548,11 +548,10 @@ def check_int_size(value:int,type:DataType):
     elif type == DataType.INT64:
         return np.iinfo(np.int64).min <= value <= np.iinfo(np.int64).max
     else:
-        return False  # Si el tipo no es válido
+        return False  
     
 def check_uint_size(value: int, type: DataType) -> bool:
     if type == DataType.UINT4:
-        # El rango para UINT4 es de 0 a 15
         return 0 <= value <= 15
     elif type == DataType.UINT8:
         return np.iinfo(np.uint8).min <= value <= np.iinfo(np.uint8).max
@@ -563,49 +562,35 @@ def check_uint_size(value: int, type: DataType) -> bool:
     elif type == DataType.UINT64:
         return np.iinfo(np.uint64).min <= value <= np.iinfo(np.uint64).max
     else:
-        return False  # Si el tipo no es válido
-import torch
+        return False
+import math
 def is_valid_bfloat16(value):
     try:
-        # Try to convert the value to bfloat16
-        torch.tensor(value, dtype=torch.bfloat16)
-        return True  # If conversion is successful, the value is valid for bfloat16
-    except Exception:
-        # If an exception occurs (e.g., invalid value), it is not valid for bfloat16
-        return False    
+        f = float(value)
+        return math.isfinite(f) and abs(f) <= 3.38953139e+38
+    except (ValueError, TypeError):
+        return False
 
 def check_float_size(value: float, type: DataType) -> bool:
     if type == DataType.BFLOAT16:
-        # BFLOAT16 es un tipo de 16 bits de precisión (rango de float16, pero se maneja de forma especial)
         return is_valid_bfloat16(value)
     elif type == DataType.DOUBLE:
-        # DOUBLE es equivalente a float64
         return np.finfo(np.float64).min <= value <= np.finfo(np.float64).max
     elif type == DataType.FLOAT:
-        # FLOAT es equivalente a float32
         return np.finfo(np.float32).min <= value <= np.finfo(np.float32).max
     elif type == DataType.FLOAT16:
-        # FLOAT16 es un tipo de 16 bits
         return np.finfo(np.float16).min <= value <= np.finfo(np.float16).max
     elif type == DataType.FLOAT8E4M3FN:
-        # Representación personalizada para FLOAT8E4M3FN (basado en la documentación)
-        # Asumimos un rango de -128 a 127 para FLOAT8 (simplificado)
         return -128 <= value <= 127 or np.isnan(value)
     elif type == DataType.FLOAT8E4M3FNUZ:
-        # Representación personalizada para FLOAT8E4M3FNUZ (sin cero negativo)
-        # Rango de -128 a 127, sin cero negativo
         if value == -0:
-            return False  # No se permite el cero negativo
+            return False  
         return -128 <= value <= 127 or np.isnan(value)
     elif type == DataType.FLOAT8E5M2:
-        # Representación personalizada para FLOAT8E5M2 (basado en IEEE 754, soporta NaN e inf)
-        # Asumimos un rango amplio para los gradientes, pero soportando inf y NaN
         return np.finfo(np.float32).min <= value <= np.finfo(np.float32).max or np.isnan(value) or np.isinf(value)
     elif type == DataType.FLOAT8E5M2FNUZ:
-        # Representación personalizada para FLOAT8E5M2FNUZ (sin inf, soporta NaN)
-        # Sin inf, pero soporta NaN
         if np.isinf(value):
-            return False  # No se permite inf
+            return False 
         return np.finfo(np.float32).min <= value <= np.finfo(np.float32).max or np.isnan(value)
     elif type == DataType.FLOAT4E2M1:
         return value in FLOAT4E2M1_VALUES

@@ -36,22 +36,3 @@ def remove_files(folder):
                 os.remove(file_path)
             except Exception:
                 pass
-def find_key_value(json_obj, key, value):
-    # Si el json_obj es un diccionario
-    if isinstance(json_obj, dict):
-        # Recorremos cada clave y valor en el diccionario
-        for k, v in json_obj.items():
-            # Si encontramos la clave con el valor esperado, devolvemos True
-            if k == key and v == value:
-                return True
-            # Si el valor es un diccionario, hacemos una llamada recursiva
-            elif isinstance(v, dict):
-                if find_key_value(v, key, value):
-                    return True
-            # Si el valor es una lista, recorremos cada elemento de la lista
-            elif isinstance(v, list):
-                for item in v:
-                    if isinstance(item, dict):
-                        if find_key_value(item, key, value):
-                            return True
-    return False

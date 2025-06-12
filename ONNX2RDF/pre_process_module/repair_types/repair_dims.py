@@ -85,8 +85,7 @@ def check_complex_dims(shape,start_error_messege:str="",tensor_id=None):
         shape["dim"][idx]["next_index"]= idx+1
         if tensor_id!=None and isinstance(tensor_id,str):
             shape["dim"][idx]["tensor_id"]=tensor_id
-        
-    #error is None, and dim is not empty
+
     return None,True
     
 
