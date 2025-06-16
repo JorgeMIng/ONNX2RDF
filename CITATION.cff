@@ -1,11 +1,11 @@
-cff-version: "1.2.0"
+cff-version: "1.1.0"
 message: "If you use this software, please cite it as below."
 title: "ONNX to RDF Parser"
 authors:
   - family-names: "Jorge"
     given-names: "Martin Izquierdo"
     affiliation: "Universidad Politecnica de Madrid"
-orcid: "https://orcid.org/0009-0005-7696-8995"
+    orcid: "https://orcid.org/0009-0005-7696-8995"
 version: "0.1.0"
 date-released: "2025-06-16"
 url: "https://github.com/JorgeMIng/ONNX2RDF"
