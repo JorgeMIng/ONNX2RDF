@@ -51,7 +51,7 @@ dependencies = [
 [project.urls]
 # Uncomment and update with your actual URL
 homepage = "https://github.com/JorgeMIng/ONNX2RDF"
-download = "https://github.com/JorgeMIng/ONNX2RDF/releases/latest"
+download = "https://github.com/JorgeMIng/ONNX2RDF/releases/download/v0.1.0/ONNX2RDF-0.1.0.tar.gz"
 issues = "https://github.com/JorgeMIng/ONNX2RDF/issues"
 
 [tool.setuptools]
