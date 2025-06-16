@@ -333,12 +333,12 @@ base:has_shape a owl:ObjectProperty ;
 base:has_sparse_indices a owl:ObjectProperty ;
     rdfs:label "has_sparse_indices" ;
     rdfs:domain base:SparseTensor ;
-    rdfs:range base:TensorShape .
+    rdfs:range base:Tensor .
 
 base:has_sparse_values a owl:ObjectProperty ;
     rdfs:label "has_sparse_values" ;
     rdfs:domain base:SparseTensor ;
-    rdfs:range base:TensorShape .
+    rdfs:range base:Tensor .
 
 base:has_tensor_annotation a owl:ObjectProperty ;
     rdfs:label "has_tensor_annotation" ;
@@ -620,6 +620,10 @@ base:Segment a owl:Class ;
 base:SimpleValue a owl:Class ;
     rdfs:label "Simple Value" .
 
+base:TensorShape a owl:Class ;
+    rdfs:label "Tensor Shape" ;
+    rdfs:subClassOf olo:OrderedList .
+
 base:TensorValue a owl:Class ;
     rdfs:label "Tensor Value" .
 
@@ -638,10 +642,6 @@ olo:OrderedList a owl:Class ;
 
 olo:Slot a owl:Class ;
     rdfs:label "Slot" .
-
-base:TensorShape a owl:Class ;
-    rdfs:label "Tensor Shape" ;
-    rdfs:subClassOf olo:OrderedList .
 
 base:SparseTensor a owl:Class ;
     rdfs:label "Sparse Tensor" .
