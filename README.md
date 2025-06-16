@@ -291,13 +291,13 @@ See [LICENSE](LICENSE) for more information.
 
 ## 📑 Citation
 
-If you use this software, please cite it as or use the [CITATION.cff](CITATION.cff):
+If you use this software, please cite it as or refer to [ZENODO (link)](https://doi.org/10.5281/zenodo.15677130):
 
 ```bibtex
 @software{martin_izquierdo_2025_onnx2rdf,
   author       = {Jorge Martín Izquierdo},
   title        = {ONNX to RDF Parser},
-  version      = {0},
+  version      = {0.1.1},
   date         = {2025-06-16},
   doi          = {10.5281/zenodo.15677130},
   url          = {https://github.com/JorgeMIng/ONNX2RDF},
