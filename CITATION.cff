@@ -6,11 +6,10 @@ authors:
     given-names: Martín Izquierdo
     orcid: https://orcid.org/0009-0005-7696-8995
     affiliation: University Politecnica de Madrid
-version: 0.1.0
-date-released: 2025-06-12
-doi: 10.5281/zenodo.1234567
-url: https://github.com/JorgeMIng/ONNX2RDF
-license: Apache 2.0
+version: "0.1.1"
+date-released: "2025-06-12"
+url: "https://github.com/JorgeMIng/ONNX2RDF"
+license: "Apache-2.0"
 keywords:
   - ONNX
   - RDF
