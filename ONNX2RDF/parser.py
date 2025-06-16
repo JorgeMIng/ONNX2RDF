@@ -682,7 +682,7 @@ class ONNX2RDFParser():
       
      
         script_path = os.path.dirname(os.path.abspath(__file__))
-        rml_parser = os.path.join(script_path,"rmlmapper-7.3.1-r374-all.jar")
+        rml_parser = os.path.join(script_path,"rmlmapper.jar")
         extension = get_extension(self.get_rdf_format())    
         rdf_file_name = file_name+extension
         ttl_file_name = f"{os.path.splitext(os.path.basename(yarrml_path))[0]}.ttl"
@@ -735,7 +735,7 @@ class ONNX2RDFParser():
         time_stamp = datetime.now()
         start_time= time.time()
         script_path = os.path.dirname(os.path.abspath(__file__))
-        rml_parser = os.path.join(script_path,"rmlmapper-7.3.1-r374-all.jar")
+        rml_parser = os.path.join(script_path,"rmlmapper.jar")
         
         to_console=self.to_console
         
