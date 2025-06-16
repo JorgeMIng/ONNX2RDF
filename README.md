@@ -1,7 +1,7 @@
 # ONNX2RDF
 
 [![License](https://img.shields.io/github/license/JorgeMIng/ONNX2RDF)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1234567.svg)](https://doi.org/10.5281/zenodo.1234567)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15677130.svg)](https://doi.org/10.5281/zenodo.15677130)
 [![Cite this software](https://img.shields.io/badge/Cite%20this-CFF-blue)](https://github.com/JorgeMIng/ONNX2RDF/blob/main/CITATION.cff)
 ![Python](https://img.shields.io/pypi/pyversions/onnx2rdf)
 [![PyPI version](https://badge.fury.io/py/onnx2rdf.svg)](https://badge.fury.io/py/onnx2rdf)
@@ -297,9 +297,9 @@ If you use this software, please cite it as or use the [CITATION.cff](CITATION.c
 @software{martin_izquierdo_2025_onnx2rdf,
   author       = {Jorge Martín Izquierdo},
   title        = {ONNX to RDF Parser},
-  version      = {0.1.0},
+  version      = {0.1.1},
   date         = {2025-06-16},
-  doi          = {10.5281/zenodo.1234567},
+  doi          = {10.5281/zenodo.15677130},
   url          = {https://github.com/JorgeMIng/ONNX2RDF},
   license      = {Apache 2.0},
   affiliation  = {Universidad Politécnica de Madrid},

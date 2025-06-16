@@ -1,55 +1,33 @@
 {
     "@context": "https://w3id.org/codemeta/3.0",
+    "type": "SoftwareSourceCode",
     "applicationCategory": "SoftwareSourceCode",
     "author": [
         {
+            "id": "https://orcid.org/0009-0005-7696-8995",
+            "type": "Person",
             "affiliation": {
-                "name": "Universidad Politécnica de Madrid",
-                "@type": "Organization"
+                "type": "Organization",
+                "name": "Universidad Politécnica de Madrid"
             },
             "email": "jorge.martin.izquierdo@upm.es",
             "familyName": "Martín Izquierdo",
-            "givenName": "Jorge",
-            "@id": "https://orcid.org/0009-0005-7696-8995",
-            "@type": "Person"
+            "givenName": "Jorge"
         }
     ],
-    "codeRepository": "git+https://github.com/JorgeMIng/ONNX2RDF",
+    "codeRepository": "https://github.com/JorgeMIng/ONNX2RDF",
     "dateCreated": "2025-06-16",
     "dateModified": "2025-06-16",
     "datePublished": "2025-06-16",
     "description": "ONNX2RDF is a pipeline for converting ONNX files to a RDF format.",
+    "identifier": "https://doi.org/10.5281/zenodo.15677130",
     "keywords": [
-        {
-            "name": "ONNX",
-            "@id": "https://onnx.ai",
-            "@type": "DefinedTerm"
-        },
-        {
-            "name": "RDF",
-            "@id": "https://www.w3.org/TR/rdf-schema/",
-            "@type": "DefinedTerm"
-        },
-        {
-            "name": "Semantic Web",
-            "@id": "https://www.wikidata.org/wiki/Q54871",
-            "@type": "DefinedTerm"
-        },
-        {
-            "name": "Machine Learning",
-            "@id": "https://www.wikidata.org/wiki/Q2539",
-            "@type": "DefinedTerm"
-        },
-        {
-            "name": "Ontology",
-            "@id": "https://www.wikidata.org/wiki/Q324254",
-            "@type": "DefinedTerm"
-        },
-        {
-            "name": "Linked Data",
-            "@id": "https://www.wikidata.org/wiki/Q515620",
-            "@type": "DefinedTerm"
-        }
+        "ONNX",
+        "RDF",
+        "Semantic Web",
+        "Machine Learning",
+        "Ontology",
+        "Linked Data"
     ],
     "license": "https://spdx.org/licenses/Apache-2.0",
     "name": "ONNX2RDF",
@@ -61,15 +39,9 @@
         "Java",
         "Python 3"
     ],
-    "softwareRequirements": [
-        {
-            "name": "RMLio/yarrrml-parser",
-            "version": "v1.10.0"
-        }
-    ],
-    "version": "0.1.0",
+    "softwareRequirements": "https://github.com/RMLio/yarrrml-parser",
+    "version": "0.1.1",
     "developmentStatus": "wip",
     "isSourceCodeOf": "Hugginface ONNX2RDF Parser",
-    "issueTracker": "https://github.com/JorgeMIng/ONNX2RDF/issues",
-    "@type": "SoftwareSourceCode"
+    "issueTracker": "https://github.com/JorgeMIng/ONNX2RDF/issues"
 }
