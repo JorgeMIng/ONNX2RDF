@@ -15,9 +15,9 @@
         }
     ],
     "codeRepository": "git+https://github.com/JorgeMIng/ONNX2RDF",
-    "dateCreated": "2025-06-12",
-    "dateModified": "2025-06-12",
-    "datePublished": "2025-06-12",
+    "dateCreated": "2025-06-16",
+    "dateModified": "2025-06-16",
+    "datePublished": "2025-06-16",
     "description": "ONNX2RDF is a pipeline for converting ONNX files to a RDF format.",
     "keywords": [
         {
