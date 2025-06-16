@@ -1,6 +1,6 @@
 
 
-import warnings
+from warnings_thread_safe import warnings 
 from repair_dims import check_dims_simple,check_complex_dims,invalid_string_number
 
 from repair_metadata_prop import check_metadata_entries
@@ -14,18 +14,30 @@ data_storage = ["uint64Data","doubleData","int64Data","int32Data","floatData","r
 
 
 def check_sparse_complex(tensor,start_error_messege:str="",check_storage_data=False,tensor_id=None):
+    
+    
+    try:
+        tmp_name = tensor["values"]["name"]
+        tensor_id = f"{tensor_id}-{tmp_name}"
+        
+    except Exception:
+        pass
+    
+    
+    
+    
     check=True
     
     
     if "indices" in tensor:
 
-        check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege} Sparse Initializer (indices) has a wrong format {LINE_WITH_TAB}",check_storage_data=check_storage_data,tensor_id=f"{tensor_id}-indices")
+        check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege} Sparse Initializer (indices) has a wrong format {LINE_WITH_TAB}",check_storage_data=check_storage_data,tensor_id=f"{tensor_id}-indices",omit_name=True)
         
     if check and "values" in tensor:
         if "name" not in tensor["values"]:
             warnings.warn(f"{start_error_messege} \"values\" param needs to have a tensor with \"name\" param")
             return False,None
-        check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege} Sparse Initializer (values) has a wrong format {LINE_WITH_TAB}",check_storage_data=check_storage_data,tensor_id=f"{tensor_id}-values")
+        check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege} Sparse Initializer (values) has a wrong format {LINE_WITH_TAB}",check_storage_data=check_storage_data,tensor_id=f"{tensor_id}-values",omit_name=True)
         
     
     if "dims" not in tensor:
@@ -51,12 +63,17 @@ def check_sparse_complex(tensor,start_error_messege:str="",check_storage_data=Fa
         warnings.warn(f"\n{start_error_messege} Values and indices are missing")
         return False,None
     
+    
+    
+    
+    
+    
     remove_extra_params(tensor,["indices","dims","values"],start_error_messege)
     tensor["is_sparse"]=""
     tensor["tensor_id"]=tensor_id
-    return True,tensor["values"]["name"]
+    return True
 
-def check_tensor_complex(tensor,start_error_messege:str="Initializer",check_storage_data=False,tensor_id=None):
+def check_tensor_complex(tensor,start_error_messege:str="Initializer",check_storage_data=False,tensor_id=None,omit_name=False):
     if not isinstance(tensor,dict):
         
         warnings.warn(f"\n{start_error_messege} Tensor is (it is not a dictionary) -> Tensor its deleted")
@@ -64,10 +81,20 @@ def check_tensor_complex(tensor,start_error_messege:str="Initializer",check_stor
         return False
     correct=True
     
-    if tensor!=None and isinstance(tensor_id,str):
-        tensor["tensor_id"]=tensor_id
+   
+    
+    
+    
     
     if "dims" in tensor :
+         
+        if "name" in tensor and not isinstance(tensor["name"],str):
+            
+            warnings.warn(f"\n{start_error_messege}  Tensor \"name\" param is not a string (sequence of characters)")
+            if not omit_name:
+                tensor_id = f"{tensor_id}-{tensor["name"]}"
+            correct= False
+            
         
            
         error = check_dims_simple(tensor["dims"],f"{start_error_messege} Tensor \"dims\" param has a wrong format {LINE_WITH_TAB}",tensor_id=tensor_id)    
@@ -82,12 +109,7 @@ def check_tensor_complex(tensor,start_error_messege:str="Initializer",check_stor
             tensor["shape"]=dims
             tensor["is_shape"]=""
              
-        
-    if "name" in tensor and not isinstance(tensor["name"],str):
-        
-        warnings.warn(f"\n{start_error_messege}  Tensor \"name\" param is not a string (sequence of characters)")
-        
-        correct= False
+    
         
     if "dataLocation" not in tensor:
         label = get_location_label(LocationType.DEFAULT)
@@ -146,7 +168,12 @@ def check_tensor_complex(tensor,start_error_messege:str="Initializer",check_stor
         params.extend(data_storage)
         
         remove_extra_params(tensor,params,start_error_messege=f"{start_error_messege} The tensor ")
-    tensor["is_tensor"]=""    
+    tensor["is_tensor"]=""   
+    tensor["tensor_id"]=tensor_id
+    
+    
+    
+     
     return correct
 
 

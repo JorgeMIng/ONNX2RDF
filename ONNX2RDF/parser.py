@@ -5,11 +5,17 @@ import argparse
 import inspect
 import os
 import sys
-import warnings
+import re
+
+
+
 import traceback
 from typing import Union
 from enum import Enum
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+
+from warnings_thread_safe import warnings 
 
 from clean_model import process_model as execute_clean_model
 from pre_process_module.pre_process import __pre_process__ as execute_pre_process
@@ -227,8 +233,8 @@ import subprocess
 
 def parse_args():
 
-    parser = argparse.ArgumentParser(description="Process a ONNX file to its ontology.")
-    parser.add_argument("model_path", help="Path to the onnx file to process. Path can be absolute or relative.")
+    parser = argparse.ArgumentParser(description="Process a ONNX file or folder with ONNX files to RDF files.")
+    parser.add_argument("model_path", help="Path to the onnx file to process or folder with multiple files. Path can be absolute or relative.")
     parser.add_argument("--target_path", default="rdfs", help="Directory where rdf files will be stored (default: 'rdfs'). Path can be absolute and in case relative path actual folder or --work_folder will be used")
     parser.add_argument("--rdf_format", default="nquads", help="Available rdf formats (nquads (default), turtle, trig, trix, jsonld, hdt).")
     parser.add_argument("--log_persistant", action=argparse.BooleanOptionalAction, help="(default: Off) If set instead of the logs being dump on the last_execution folder, a new folder with timestamps is created. \nIf --log_extra is executed only the folder with time_stamps gets the extra files")
@@ -888,13 +894,34 @@ class ONNX2RDFParser():
             except (BaseException):
                 #Keyboard Interrupt or similars
                 self._stop=True
+            
+            
                 
             if w and not self._stop:
-                logger.warning(f"ONNX preprocess finish - {len(w)} warning(s) caught | Model:({model_name_path})")
-                warning_caught=True
+                
+                w_filtered = []
+                current_thread = threading.current_thread().name
                 
                 for warning in w:
-                    logger.warning(f" Preproces Warning | Model:({model_name_path}) {warning.message}")
+                    
+                    message_str = str(warning.message)
+                    match = re.match(r"^\[([^\]]+)\]\s*(.*)", message_str)
+                    thread_name=None
+                    if match:
+                        thread_name = match.group(1)
+                        message = match.group(2)
+                    else:
+                        message=message_str
+                    
+                    if thread_name and thread_name ==current_thread:
+                        w_filtered.append(message)
+                            
+                logger.warning(f"ONNX preprocess finish - {len(w_filtered)} warning(s) caught | Model:({model_name_path})")
+                warning_caught=True
+                
+                for warning_messege in w_filtered:
+
+                    logger.warning(f" Preproces Warning | Model:({model_name_path}) {warning_messege}")
             elif not self._stop:
                 logger.info(f"ONNX preprocess finish - No warnings were raised | Model:({model_name_path}).")
             if error_found:

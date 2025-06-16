@@ -3,7 +3,7 @@ from pre_process_module.util_process import ONNX_DOMAIN
 from pre_process_module.util_process.operators import is_opertor_list_func_type,is_register_domain,is_register_operator
 
 from pre_process_module.util_process.data import get_opset_data,function_data_find,opset_data_find,get_functions_data,opset_key,function_key
-import warnings
+from warnings_thread_safe import warnings 
 from check_functions import repair_function,check_fields_functions
 from pre_process_module.util_process.util import remove_extra_params
 

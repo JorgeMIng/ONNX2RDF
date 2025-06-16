@@ -1,5 +1,5 @@
 from repair_tensor import check_tensor_complex,check_sparse_complex
-import warnings
+from warnings_thread_safe import warnings 
 from pre_process_module.util_process.operators import find_operators
 from pre_process_module.util_process.data import function_data_find
 from repair_type_proto import check_type_proto
@@ -9,7 +9,7 @@ from pre_process_module.repair_nodes.repair_nodes_base import check_subgraph
 
 
 from enum import Enum
-import warnings
+from warnings_thread_safe import warnings 
 from onnx.defs import  OpSchema
 class AttrType(Enum):
     UNDEFINED = 0

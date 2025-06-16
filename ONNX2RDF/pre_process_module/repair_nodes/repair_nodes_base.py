@@ -1,5 +1,5 @@
 from util_process.operators import is_register_operator,is_domain_ONNX
-import warnings
+from warnings_thread_safe import warnings 
 
 from util_process.data import get_opset_data,function_data_find,opset_data_find,function_key,opset_key,get_func_values,get_functions_data
 from node_connections import check_connections_node,add_connections_to_node_name_lists,get_initializers_names,get_graph_peripherials
@@ -639,6 +639,8 @@ def __repair_nodes_local__(nodes,imports,func_data,func_name="",graph_name="",in
             if types_operator_data[idx] and types_operator_data[idx][0]:
                 node["func_id"]=build_applies_func_id(node)
                 
+                get_func_element_id()
+                
             if types_operator_data[idx] and types_operator_data[idx][1] :
                 node["operator_id"]=build_applies_operator_id(node)
                 
@@ -690,7 +692,7 @@ def build_applies_func_id(node):
     if node["overload"]!="":
         overload_str=f"-overload-{node["overload"]}"
     
-    return f"name-{node["opType"]}-domain-{node["domain"]}{overload_str}"
+    return f"Func-{node["opType"]}-domain-{node["domain"]}{overload_str}"
 
 def __check_sub_graph_fields__(graph,start_error_messege="",graph_names:list[str]=[]):
     if "node" not in graph or not isinstance(graph["node"],list):

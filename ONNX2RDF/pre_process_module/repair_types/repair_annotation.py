@@ -1,4 +1,4 @@
-import warnings
+from warnings_thread_safe import warnings 
 from pre_process_module.util_process.util import remove_extra_params,LINE_WITH_TAB
 
 from repair_metadata_prop import check_metadata_entries
@@ -8,7 +8,7 @@ def check_annotations(graph,element_id,start_error_messege=""):
         return True
     
     annotation = graph["quantizationAnnotation"]
-    tensor_name=""
+    tensor_name="emoty_name"
     
     if "tensorName" in annotation and not isinstance(annotation["tensorName"],str):
         warnings.warn(f" {start_error_messege} The param \"tensorName\" is not a string -> Deleting optional param ")

@@ -1,4 +1,4 @@
-import warnings
+from warnings_thread_safe import warnings 
 from pre_process_module.util_process.util import remove_extra_params,LINE_WITH_TAB
 from repair_tensor import check_tensor_simple,check_tensor_data_type,DataType,get_label_data_type
 

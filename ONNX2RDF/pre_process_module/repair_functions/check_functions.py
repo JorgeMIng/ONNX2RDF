@@ -1,5 +1,5 @@
 
-import warnings
+from warnings_thread_safe import warnings 
 from pre_process_module.repair_types.repair_metadata_prop import check_metadata_entries
 from pre_process_module.repair_types.repair_attributes import check_attributes
 from pre_process_module.repair_types.reapair_value_info import check_value_infos
@@ -72,7 +72,7 @@ def repair_function(function,func_pos):
     
        
     if "valueInfo" in function:
-        correct = check_value_infos(function["valueInfo"],start_error_messege=f"\nThe function {function["name"]} defined at pos {func_pos} has a wrong value_info variable{LINE_WITH_TAB}",element_id=element_id)
+        correct = check_value_infos(function["valueInfo"],start_error_messege=f"\nThe function {function["name"]} defined at pos {func_pos} has a wrong value_info variable{LINE_WITH_TAB}",element_id=f"{element_id}-valuesInfo")
         if not correct:
             function["valueInfo"]=[]
     else:

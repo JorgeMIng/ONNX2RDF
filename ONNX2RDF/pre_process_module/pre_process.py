@@ -5,7 +5,7 @@ from util_process.util import remove_extra_params
 from util_process.operators import find_operators,get_key_operator,is_domain_ONNX,get_correct_status
 from util_process.operators import is_operator_func,get_operator_url,is_operator_shape_inference,is_onnx_runtime
 from onnx.defs import  OpSchema
-import warnings
+from warnings_thread_safe import warnings 
 from repair_functions.repair_opsets import repair_opset_and_funcs
 
 from util_process.data import get_opset_data,function_data_find,opset_data_find,get_functions_data,function_key,opset_key,get_opset_values,get_func_values

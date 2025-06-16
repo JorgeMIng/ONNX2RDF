@@ -543,21 +543,21 @@ mappings:
 
   connection_out_list:
     sources: node_data
-    subjects: modelR:NodeOutputs/$(element_id)-Node-$(name)_outputs
+    subjects: modelR:NodeOutputs/$(element_id)-Node-$(name)-outputs
     po:
       - [a, base:NodeOutputs]
       - [rdfs:subClassOf, olo:OrderedList~iri]
       - predicates: olo:slot
-        objects: modelR:NodeOutput/$(name)-idx$(output_node[*].index)~iri
+        objects: modelR:NodeOutput/$(name)-outputs-idx$(output_node[*].index)~iri
          
   connection_in_list:
     sources: node_data
-    subjects: modelR:NodeInputs/$(element_id)-Node-$(name)_inputs
+    subjects: modelR:NodeInputs/$(element_id)-Node-$(name)-inputs
     po:
       - [a, base:NodeInputs]
       - [rdfs:subClassOf, olo:OrderedList~iri]
       - predicates: olo:slot
-        objects: modelR:NodeInput/$(name)-idx$(input_node[*].index)~iri
+        objects: modelR:NodeInput/$(name)-inputs-idx$(input_node[*].index)~iri
   
 
   nodos:
@@ -577,9 +577,9 @@ mappings:
        objects: modelR:Function/$(func_id)~iri
        
      - predicates: base:has_inputs
-       objects: modelR:NodeInputs/$(element_id)-Node-$(name)_inputs~iri
+       objects: modelR:NodeInputs/$(element_id)-Node-$(name)-inputs~iri
      - predicates: base:has_outputs
-       objects: modelR:NodeOutputs/$(element_id)-Node-$(name)_outputs~iri
+       objects: modelR:NodeOutputs/$(element_id)-Node-$(name)-outputs~iri
 
      - predicates: base:has_attribute
        objects: modelR:Attribute/$(attribute[*].element_id)~iri
@@ -588,24 +588,24 @@ mappings:
 
   connections_out:
     sources: node_outputs
-    subjects: modelR:NodeOutput/$(element_id)-idx$(index)
+    subjects: modelR:NodeOutput/$(element_id)-outputs-idx$(index)
     po:
       - [a, base:NodeOutput]
       - [base:name, $(name),xsd:string]
       - [olo:index, $(index),xsd:positiveInteger]
       - [rdfs:subClassOf,olo:Slot~iri]
       - predicates: olo:ordered_list
-        objects: modelR:NodeOutputs/$(element_id)_outputs~iri
+        objects: modelR:NodeOutputs/$(element_id)-outputs~iri
 
       - predicates: olo:next
-        objects: modelR:NodeOutput/$(element_id)-idx$(next_index)~iri
+        objects: modelR:NodeOutput/$(element_id)-outputs-idx$(next_index)~iri
 
       - predicates: olo:next
         objects: rdf:nil$(last_index)~iri
     
   connections_in:
     sources: node_inputs
-    subjects: modelR:NodeInput/$(element_id)-idx$(index)
+    subjects: modelR:NodeInput/$(element_id)-inputs-idx$(index)
     po:
       - [a, base:NodeInput]
       - [base:name, $(name),xsd:string]
@@ -614,10 +614,10 @@ mappings:
       - [base:is_being_used, $(is_empty),xsd:boolean]
 
       - predicates: olo:ordered_list
-        objects: modelR:NodeInputs/$(element_id)_inputs~iri
+        objects: modelR:NodeInputs/$(element_id)-inputs~iri
 
       - predicates: olo:next
-        objects: modelR:NodeInput/$(element_id)-idx$(next_index)~iri        
+        objects: modelR:NodeInput/$(element_id)-inputs-idx$(next_index)~iri        
 
       - predicates: olo:next
         objects: rdf:nil$(last_index)~iri
@@ -720,6 +720,14 @@ mappings:
               - [str1, "$(type)"]
               - [str2, "SPARSE_TENSOR"]
 
+        - predicates: base:has_attribute_value
+          objects: modelR:ValueInfo/$(element_id)-$(type)~iri
+          condition:
+            function: equal
+            parameters:
+              - [str1, "$(type)"]
+              - [str2, "TYPE_PROTO"]
+
    
   attributes_list_type:
     sources: all_attributes
@@ -793,6 +801,13 @@ mappings:
             parameters:
               - [str1, "$(type)"]
               - [str2, "SPARSE_TENSORS"]
+        - predicates: base:item_has_value
+          objects: modelR:ValueInfo/$(element_id)-idx$(index)~iri
+          condition:
+            function: equal
+            parameters:
+              - [str1, "$(type)"]
+              - [str2, "TYPE_PROTOS"]
 
 
 

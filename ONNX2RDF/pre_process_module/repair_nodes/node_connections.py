@@ -1,7 +1,7 @@
 
 
 
-import warnings
+from warnings_thread_safe import warnings 
 from onnx.defs import  OpSchema
 from pre_process_module.util_process.util import DOUBLE_LINE_WITH_TAB
 from pre_process_module.util_process.operators import find_operators
@@ -63,10 +63,10 @@ def get_graph_peripherials(graph,start_error_messege=""):
             
 def add_connections_to_node_name_lists(node,output_names:dict,input_names:dict,node_id="",start_error_messege=""):
     if "output" in node:
-        add_connections_to_namelist(node["output"],output_names,f"{node_id}-Node-{node["name"]}",
+        add_connections_to_namelist(node["output"],output_names,f"{node_id}-Node-{node["name"]}-outputs",
                                     start_error_messege=f"{start_error_messege} Output connections have a wrong format")
     if "input" in node:
-        add_connections_to_namelist(node["input"],input_names,f"{node_id}-Node-{node["name"]}",
+        add_connections_to_namelist(node["input"],input_names,f"{node_id}-Node-{node["name"]}-inputs",
                                     start_error_messege=f"{start_error_messege} Input connections have a wrong format")
     
 

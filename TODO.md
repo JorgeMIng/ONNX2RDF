@@ -9,14 +9,14 @@ Add functionalities to have progress bar on top of the log messeges using tqdm.
 
 ### Complex Types and raw-data
 
-Type checking of complex types and check raw_data entry validity
+Type checking of complex types and check raw_data entry validation
 
 ### Fill operator
 
 The function fill_operator_metadata should be able to build more info considering types of inputs/outputs
 
 ### Device Configuration
-onnx 1.18 introduces Device configuration with an update of the IR. Added those new data to the parser.
+onnx 1.18 introduces Device configuration with an update of the IR. Add those new data to the parser.
 
 ### Onnxruntime custom libraries
 
@@ -30,8 +30,8 @@ Refactor code in relation to warnings and error messeges, being able to define m
 
 With the objective of having warnings that should not be considered as error or the model has a problem.
 
-### Error messeges equlity standar
-Make sure all error/warnign messeges are similar and follow a consistant style
+### Error messeges improvemente
+Make sure all error/warning messeges are similar and follow a consistant style
 
 
 ### Option to add custom yarrrml rml files that encapsulated all files

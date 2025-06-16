@@ -1,5 +1,5 @@
 
-import warnings
+from warnings_thread_safe import warnings 
 from repair_metadata_prop import check_metadata_entries
 from repair_type_proto import check_type_proto
 from pre_process_module.util_process.util import remove_extra_params,LINE_WITH_TAB

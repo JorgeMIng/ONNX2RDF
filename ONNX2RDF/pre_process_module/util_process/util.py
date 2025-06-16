@@ -1,4 +1,4 @@
-import warnings
+from warnings_thread_safe import warnings 
 
 LINE_WITH_TAB="\n\t-> "
 
@@ -85,4 +85,27 @@ def get_operator_status_label(type:OperatorStatus):
 def treat_special_chars(input:str):
     treated_result = input.replace("/", "//")
     return treated_result
+
+
+
+
+from warnings_thread_safe import warnings 
+import threading
+
+# Custom warning class that includes thread name
+class ThreadWarning(UserWarning):
+    def __init__(self, message):
+        thread_name = threading.current_thread().name
+        super().__init__(message)
+        self.thread_name = thread_name
+
+# Replacement for warnings.warn
+def warn(message, category=None, stacklevel=1, source=None):
+    # Wrap the message in ThreadWarning
+    if category is None:
+        category = ThreadWarning
+    # If message is a string, convert to warning object with thread info
+    if isinstance(message, str):
+        message = ThreadWarning(message)
+    warnings.warn(message, category=category, stacklevel=stacklevel+1, source=source)
     

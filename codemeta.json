@@ -29,6 +29,26 @@
             "name": "RDF",
             "@id": "https://www.w3.org/TR/rdf-schema/",
             "@type": "DefinedTerm"
+        },
+        {
+            "name": "Semantic Web",
+            "@id": "https://www.wikidata.org/wiki/Q54871",
+            "@type": "DefinedTerm"
+        },
+        {
+            "name": "Machine Learning",
+            "@id": "https://www.wikidata.org/wiki/Q2539",
+            "@type": "DefinedTerm"
+        },
+        {
+            "name": "Ontology",
+            "@id": "https://www.wikidata.org/wiki/Q324254",
+            "@type": "DefinedTerm"
+        },
+        {
+            "name": "Linked Data",
+            "@id": "https://www.wikidata.org/wiki/Q515620",
+            "@type": "DefinedTerm"
         }
     ],
     "license": "https://spdx.org/licenses/Apache-2.0",
