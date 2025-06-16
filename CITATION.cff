@@ -18,8 +18,8 @@ keywords:
 license:
 - apache-2.0
 message: If you use this software, please cite it using the metadata from this file.
-repository-code: https://github.com/JorgeMIng/ONNX2RDF/tree/v0.1.1
-title: 'ONNX to RDF Parser ONNX2RDF-v0.1.1 '
+repository-code: https://github.com/JorgeMIng/ONNX2RDF/tree/v0.1.0
+title: 'ONNX to RDF Parser ONNX2RDF-v0.1.0 '
 type: software
-version: v0.1.1
+version: v0.1.0
 
