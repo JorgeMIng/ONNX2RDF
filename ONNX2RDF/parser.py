@@ -43,6 +43,25 @@ DEFAULT_ONNX2RDF_URI="http://base.onnx.model.com#"
 DEFAULT_ONNX2RDF_RESOURCE="http://base.onnx.model.com/resource/"
 
 
+import urllib.request
+from pathlib import Path
+
+MAPPER_NAME = "rmlmapper.jar"
+
+JAR_URL = "https://github.com/RMLio/rmlmapper-java/releases/download/v7.3.3/rmlmapper-7.3.3-r374-all.jar"
+JAR_PATH = Path(__file__).parent / MAPPER_NAME
+
+def download_rmlmapper_jar():
+    if not JAR_PATH.exists():
+        print(f"Downloading RMLMapper JAR from {JAR_URL}...")
+        JAR_PATH.parent.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(JAR_URL, JAR_PATH)
+        print(f"Downloaded to {JAR_PATH}")
+    else:
+        print(f"RMLMapper JAR already exists at {JAR_PATH}")
+    return JAR_PATH
+
+
 
 class ErrorsONNX2RDF(Enum):
     NONE_ERROR=0
@@ -434,6 +453,8 @@ class ONNX2RDFParser():
         self._original_handler={}
         self._max_ram="2048m"
         
+        download_rmlmapper_jar()
+        
         
     
 
@@ -682,7 +703,7 @@ class ONNX2RDFParser():
       
      
         script_path = os.path.dirname(os.path.abspath(__file__))
-        rml_parser = os.path.join(script_path,"rmlmapper.jar")
+        rml_parser = os.path.join(script_path,MAPPER_NAME)
         extension = get_extension(self.get_rdf_format())    
         rdf_file_name = file_name+extension
         ttl_file_name = f"{os.path.splitext(os.path.basename(yarrml_path))[0]}.ttl"
@@ -728,6 +749,9 @@ class ONNX2RDFParser():
             comando = comando +" -v"
         self.run_command(comando)
         return output_path
+    
+    
+    
         
     def __pipeline_run__(self,input_file_path,model_name_path=None,base_resource_url=None,id_process="",extra_files=[]):
         
@@ -735,7 +759,7 @@ class ONNX2RDFParser():
         time_stamp = datetime.now()
         start_time= time.time()
         script_path = os.path.dirname(os.path.abspath(__file__))
-        rml_parser = os.path.join(script_path,"rmlmapper.jar")
+        rml_parser = os.path.join(script_path,MAPPER_NAME)
         
         to_console=self.to_console
         
