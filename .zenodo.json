@@ -1,0 +1,32 @@
+{
+  "creators": [
+    {
+      "name": "Jorge"
+    },
+    {
+      "name": "Martin Izquierdo"
+    },
+    {
+      "affiliation": "Universidad Politecnica de Madrid"
+    },
+    {
+      "orcid": "0009-0005-7696-8995"
+    }
+  ],
+  "keywords": [
+    "ONNX",
+    "RDF",
+    "Semantic Web",
+    "Machine Learning",
+    "Ontology",
+    "Linked Data"
+  ],
+  "license": {
+    "id": [
+      "Apache-2.0"
+    ]
+  },
+  "publication_date": "2025-06-16",
+  "title": "ONNX to RDF Parser ONNX2RDF-v0.1.0 ",
+  "version": "v0.1.1"
+}
