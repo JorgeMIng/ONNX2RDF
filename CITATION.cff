@@ -1,17 +1,21 @@
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-title: "ONNX to RDF Parser"
-authors:
-  - family-names: Jorge
-    given-names: Martín Izquierdo
-    orcid: https://orcid.org/0009-0005-7696-8995
-    affiliation: University Politecnica de Madrid
-version: "0.1.0"
-date-released: "2025-06-12"
-url: "https://github.com/JorgeMIng/ONNX2RDF"
-license: "Apache-2.0"
-keywords:
-  - ONNX
-  - RDF
-  - Semantic Web
-  - Machine Learning
+{
+  "creators": [
+    {
+      "affiliation": "University Politecnica de Madrid",
+      "name": "Jorge, Martín Izquierdo",
+      "orcid": "0009-0005-7696-8995"
+    }
+  ],
+  "keywords": [
+    "ONNX",
+    "RDF",
+    "Semantic Web",
+    "Machine Learning"
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "publication_date": "2025-06-12",
+  "title": "ONNX to RDF Parser",
+  "version": "0.1.0"
+}
