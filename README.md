@@ -37,7 +37,13 @@ You can also use the dockerfile (see below) which will prepare the enviroment.
 
 ## 📦 Installation Options
 
-### Option 1: Build from Source
+### Option 1: Install from pip
+
+```bash
+pip install onnx_2_rdf
+```
+
+### Option 2: Build from Source
 
 Clone and install with [PEP 621](https://peps.python.org/pep-0621/)-compliant `pyproject.toml`:
 
@@ -51,7 +57,7 @@ This installs the CLI command `onnx-parser`.
 
 ---
 
-### Option 2: Using Docker
+### Option 3: Using Docker
 
 ```bash
 git clone https://github.com/JorgeMIng/ONNX2RDF.git
