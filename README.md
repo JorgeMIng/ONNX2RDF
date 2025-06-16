@@ -298,7 +298,7 @@ If you use this software, please cite it as or use the [CITATION.cff](CITATION.c
   author       = {Jorge Martín Izquierdo},
   title        = {ONNX to RDF Parser},
   version      = {0.1.0},
-  date         = {2025-06-12},
+  date         = {2025-06-16},
   doi          = {10.5281/zenodo.1234567},
   url          = {https://github.com/JorgeMIng/ONNX2RDF},
   license      = {Apache 2.0},

@@ -4,10 +4,10 @@ title: "ONNX to RDF Parser"
 authors:
   - family-names: "Jorge"
     given-names: "Martin Izquierdo"
-    orcid: "https://orcid.org/0009-0005-7696-8995"
-    affiliation: "University Politecnica de Madrid"
+    affiliation: "Universidad Politecnica de Madrid"
+orcid: "https://orcid.org/0009-0005-7696-8995"
 version: "0.1.0"
-date-released: "2025-06-12"
+date-released: "2025-06-16"
 url: "https://github.com/JorgeMIng/ONNX2RDF"
 license: "Apache-2.0"
 keywords:
