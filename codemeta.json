@@ -67,7 +67,7 @@
             "version": "v1.10.0"
         }
     ],
-    "version": "0.1.1",
+    "version": "0.1.0",
     "developmentStatus": "wip",
     "isSourceCodeOf": "Hugginface ONNX2RDF Parser",
     "issueTracker": "https://github.com/JorgeMIng/ONNX2RDF/issues",
