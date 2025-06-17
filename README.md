@@ -3,8 +3,8 @@
 [![License](https://img.shields.io/github/license/JorgeMIng/ONNX2RDF)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15677130.svg)](https://doi.org/10.5281/zenodo.15677130)
 [![Cite this software](https://img.shields.io/badge/Cite%20this-CFF-blue)](https://github.com/JorgeMIng/ONNX2RDF/blob/main/CITATION.cff)
-![Python](https://img.shields.io/pypi/pyversions/onnx2rdf)
-[![PyPI version](https://badge.fury.io/py/onnx2rdf.svg)](https://badge.fury.io/py/onnx2rdf)
+![Python](https://img.shields.io/pypi/pyversions/onnx-2-rdf)
+[![PyPI version](https://badge.fury.io/py/onnx-2-rdf.svg)](https://badge.fury.io/py/onnx2rdf)
 
 
 A Python tool that converts ONNX (Open Neural Network Exchange) models into RDF (Resource Description Framework) representations. This enables semantic querying, ontology integration, and publishing ONNX models describing all the internals workflows of the models as Linked Data.
