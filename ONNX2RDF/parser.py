@@ -51,14 +51,14 @@ MAPPER_NAME = "rmlmapper.jar"
 JAR_URL = "https://github.com/RMLio/rmlmapper-java/releases/download/v7.3.3/rmlmapper-7.3.3-r374-all.jar"
 JAR_PATH = Path(__file__).parent / MAPPER_NAME
 
-def download_rmlmapper_jar():
+def download_rmlmapper_jar(logger):
     if not JAR_PATH.exists():
-        print(f"Downloading RMLMapper JAR from {JAR_URL}...")
+        logger.info(f"Downloading RMLMapper JAR from {JAR_URL}...")
         JAR_PATH.parent.mkdir(parents=True, exist_ok=True)
         urllib.request.urlretrieve(JAR_URL, JAR_PATH)
-        print(f"Downloaded to {JAR_PATH}")
+        logger.info(f"Downloaded to {JAR_PATH}")
     else:
-        print(f"RMLMapper JAR already exists at {JAR_PATH}")
+        logger.info(f"RMLMapper JAR already exists at {JAR_PATH}")
     return JAR_PATH
 
 
@@ -453,7 +453,7 @@ class ONNX2RDFParser():
         self._original_handler={}
         self._max_ram="2048m"
         
-        download_rmlmapper_jar()
+        download_rmlmapper_jar(self.__console__)
         
         
     
@@ -601,7 +601,7 @@ class ONNX2RDFParser():
         self.set_target_path(args.target_path)
         self.set_rdf_format(args.rdf_format)
         self.set_log_persistant(args.log_persistant)
-        self.set_log_extra(args.log_extra)
+        self.set_log_extra_files(args.log_extra)
         if args.cache==None:
             cache=[]
         else:
@@ -1150,6 +1150,7 @@ class ONNX2RDFParser():
                     model_name_path=os.path.join(file_name,"model")
                 else:
                     model_name_path=os.path.join(model_name,file_name)
+                model_name_path = model_name_path.replace("\\","/")  
                 onnx_files = [(model_name_path,input_file_path)]
 
             
