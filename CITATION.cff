@@ -2,7 +2,7 @@ authors:
 - affiliation: "Universidad Polit\xE9cnica de Madrid"
   family-names: Jorge
   given-names: "Mart\xEDn Izquierdo"
-  orcid: 0009-0005-7696-8995
+  orcid: https://orcid.org/0009-0005-7696-8995
 cff-version: 1.2.0
 date-released: '2025-06-16'
 doi: 10.5281/zenodo.15677341
