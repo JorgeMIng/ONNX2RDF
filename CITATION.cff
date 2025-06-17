@@ -14,7 +14,7 @@ keywords:
 - Linked Data
 - Ontology
 license:
-- apache-2.0
+- Apache-2.0
 message: If you use this software, please cite it using the metadata from this file.
 repository-code: https://github.com/JorgeMIng/ONNX2RDF/tree/v0.1.2
 title: ONNX to RDF Parser | ONNX2RDF v0.1.2
