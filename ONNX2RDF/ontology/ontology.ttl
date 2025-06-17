@@ -153,15 +153,11 @@ base:UInt8 a base:ElementType,
     skos:altLabel 2 ;
     skos:prefLabel "UINT8"^^xsd:string .
 
-base:appliesOperator a owl:ObjectProperty ;
-    rdfs:label "applies operator" ;
-    rdfs:domain base:Node ;
-    rdfs:range base:Function .
-
 base:applies_operator a owl:ObjectProperty ;
     rdfs:label "applies_operator" ;
     rdfs:domain base:Node ;
-    rdfs:range base:Operator .
+    rdfs:range base:Function,
+        base:Operator .
 
 base:begin a owl:DatatypeProperty ;
     rdfs:label "begin" ;
@@ -660,6 +656,9 @@ base:DimEntry a owl:Class ;
 base:OperatorSet a owl:Class ;
     rdfs:label "Operator Set" .
 
+base:Node a owl:Class ;
+    rdfs:label "Node" .
+
 base:NodeOutput a owl:Class ;
     rdfs:label "Node Output" ;
     rdfs:subClassOf olo:Slot .
@@ -672,9 +671,6 @@ base:KeyType a owl:Class ;
 
 base:Model a owl:Class ;
     rdfs:label "Model" .
-
-base:Node a owl:Class ;
-    rdfs:label "Node" .
 
 base:NodeInput a owl:Class ;
     rdfs:label "Node Input" ;

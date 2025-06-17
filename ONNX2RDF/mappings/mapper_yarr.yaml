@@ -567,13 +567,13 @@ mappings:
      - [a, base:Node]
      - [base:name, $(name),xsd:string]
      - [dc:description, $(docString),xsd:string]
-     - predicates: base:appliesOperator 
+     - predicates: base:applies_operator 
        objects: baseR:Operator/$(operator_id)~iri
 
-     - predicates: base:appliesOperator 
+     - predicates: base:applies_operator 
        objects: modelR:Operator/$(custom_id)~iri
        
-     - predicates: base:appliesOperator 
+     - predicates: base:applies_operator 
        objects: modelR:Function/$(func_id)~iri
        
      - predicates: base:has_inputs
