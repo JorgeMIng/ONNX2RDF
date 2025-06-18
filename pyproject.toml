@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "onnx_2_rdf"
-version = "0.1.2"
+version = "0.1.3"
 description = "ONNX to rdf parser"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.13"
@@ -51,7 +51,7 @@ dependencies = [
 [project.urls]
 # Uncomment and update with your actual URL
 homepage = "https://github.com/JorgeMIng/ONNX2RDF"
-download = "https://github.com/JorgeMIng/ONNX2RDF/archive/refs/tags/v0.1.2.zip"
+download = "https://github.com/JorgeMIng/ONNX2RDF/archive/refs/tags/v0.1.3.zip"
 issues = "https://github.com/JorgeMIng/ONNX2RDF/issues"
 
 [tool.setuptools]

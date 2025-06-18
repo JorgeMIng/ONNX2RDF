@@ -1,7 +1,7 @@
 # ONNX2RDF
 
 [![License](https://img.shields.io/github/license/JorgeMIng/ONNX2RDF)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15677130.svg)](https://doi.org/10.5281/zenodo.15677130)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15681919.svg)](https://doi.org/10.5281/zenodo.15681919)
 [![Cite this software](https://img.shields.io/badge/Cite%20this-CFF-blue)](https://github.com/JorgeMIng/ONNX2RDF/blob/main/CITATION.cff)
 ![Python](https://img.shields.io/pypi/pyversions/onnx-2-rdf)
 [![PyPI version](https://badge.fury.io/py/onnx-2-rdf.svg)](https://badge.fury.io/py/onnx2rdf)
@@ -297,15 +297,15 @@ See [LICENSE](LICENSE) for more information.
 
 ## 📑 Citation
 
-If you use this software, please cite it as or refer to [ZENODO (link)](https://doi.org/10.5281/zenodo.15677130):
+If you use this software, please cite it as or refer to [ZENODO (link)](https://doi.org/10.5281/zenodo.15681919):
 
 ```bibtex
 @software{martin_izquierdo_2025_onnx2rdf,
   author       = {Jorge Martín Izquierdo},
   title        = {ONNX to RDF Parser},
-  version      = {0.1.2},
+  version      = {0.1.3},
   date         = {2025-06-16},
-  doi          = {10.5281/zenodo.15677130},
+  doi          = {10.5281/zenodo.15681919},
   url          = {https://github.com/JorgeMIng/ONNX2RDF},
   license      = {Apache 2.0},
   affiliation  = {Universidad Politécnica de Madrid},
