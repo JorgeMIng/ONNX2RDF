@@ -22,7 +22,7 @@ def check_dims_simple(dims,start_error_messege:str="",tensor_id=None):
         if invalid_string_number(dim):
             error_messege=f"{start_error_messege} The dim at pos {idx} of \"dims\" param is not a number"
             return error_messege
-        dims[idx]= {"dimValue":int(dim),"index":idx,"last_index":len_dims-1,"next_index":idx+1}
+        dims[idx]= {"dimValue":int(dim),"index":idx,"last_index":"","next_index":idx+1}
         if tensor_id!=None and isinstance(tensor_id,str):
             dims[idx]["tensor_id"]=tensor_id
 
