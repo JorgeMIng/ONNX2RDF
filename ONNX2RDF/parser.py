@@ -638,7 +638,7 @@ class ONNX2RDFParser():
             acum_variable=-1
         return acum_variable 
     @staticmethod   
-    def __build_global_results_report(result_entries,stoped,uris):
+    def __build_global_results_report(result_entries,stoped,uris=[]):
         result={"result_entries":result_entries}
         global_found_erros =False
         global_found_warnings=False
