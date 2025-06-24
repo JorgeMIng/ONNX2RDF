@@ -1135,7 +1135,7 @@ class ONNX2RDFParser():
                 
                 
                 if model_name==None:
-                    cache_path = os.path.join(work_folder,self.tmp_folder,file_name,"model",LOADED_CACHE)
+                    cache_path = os.path.join(work_folder,self.tmp_folder,file_name,LOADED_CACHE)
                 else:
                     cache_path = os.path.join(work_folder,self.tmp_folder,model_name,file_name,LOADED_CACHE)
                 
@@ -1147,9 +1147,9 @@ class ONNX2RDFParser():
                 
                 
                 if model_name==None:
-                    model_name_path=os.path.join(file_name,"model")
+                    model_name_path=os.path.join(file_name)
                 else:
-                    model_name_path=os.path.join(model_name,file_name)
+                    model_name_path=os.path.join(model_name)
                 model_name_path = model_name_path.replace("\\","/")  
                 onnx_files = [(model_name_path,input_file_path)]
 

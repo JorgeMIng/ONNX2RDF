@@ -519,11 +519,11 @@ def repair_nodes(data):
         peripherials = get_graph_peripherials(function)
         
         
-        correct =__repair_nodes_local__(nodes,imports,func_data,func_name=function["name"],initializers=all_initlizer_names,peripherials=peripherials,global_func=function)
+        correct =__repair_nodes_local__(nodes,imports,func_data,func_name=function["name"],initializers=all_initlizer_names,peripherials=peripherials,global_func=function,sub_graph_metadata=sub_graph_metadata)
         iterations=0
         while not correct:
             repair_opset_and_funcs(data)
-            correct =__repair_nodes_local__(nodes,imports,func_data,func_name=function["name"],initializers=all_initlizer_names,peripherials=peripherials,iterations=iterations,global_func=function)
+            correct =__repair_nodes_local__(nodes,imports,func_data,func_name=function["name"],initializers=all_initlizer_names,peripherials=peripherials,iterations=iterations,global_func=function,sub_graph_metadata=sub_graph_metadata)
             if not correct and iterations==MAX_RECURSIVE:
                 raise RuntimeError(f"Nodes at Function ({function["name"]}) cannot be repaired")                              
     
@@ -535,6 +535,8 @@ def __repair_nodes_local__(nodes,imports,func_data,func_name="",graph_name="",in
 
     
     global_data = None
+    
+
     if sub_graph_metadata and "up_metadata" not in sub_graph_metadata:
         up_metadata=dict()
     else:

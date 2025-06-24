@@ -91,7 +91,7 @@ def connect_input_output(values:list,inputs:list,outputs:list,element_id):
         if input_name not in values:
             new_element_id = f"{element_id}-valuesInfo-{input_name}"
             values.append({"is_input":new_element_id,"name":input_name})   
-    for output_name in inputs:
+    for output_name in outputs:
         if output_name not in values:
             new_element_id = f"{element_id}-valuesInfo-{output_name}"
             values.append({"is_output":new_element_id,"name":output_name})

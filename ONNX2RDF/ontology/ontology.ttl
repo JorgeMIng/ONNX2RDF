@@ -224,8 +224,8 @@ base:has_data_location a owl:ObjectProperty ;
     rdfs:domain base:Tensor ;
     rdfs:range base:DataLocation .
 
-base:has_default_atribute a owl:ObjectProperty ;
-    rdfs:label "has_default_atribute" ;
+base:has_default_attribute a owl:ObjectProperty ;
+    rdfs:label "has_default_attribute" ;
     rdfs:domain base:Function,
         base:Operator ;
     rdfs:range base:Attribute .
@@ -240,6 +240,16 @@ base:has_external_data_property a owl:ObjectProperty ;
     rdfs:label "has_external_data_property" ;
     rdfs:domain base:Tensor ;
     rdfs:range base:EntryStringKey .
+
+base:has_func_input a owl:ObjectProperty ;
+    rdfs:label "has_func_input" ;
+    rdfs:domain base:Function ;
+    rdfs:range base:ValueInfo .
+
+base:has_func_output a owl:ObjectProperty ;
+    rdfs:label "has_func_output" ;
+    rdfs:domain base:Function ;
+    rdfs:range base:ValueInfo .
 
 base:has_functions a owl:ObjectProperty ;
     rdfs:label "has_functions" ;
@@ -271,11 +281,6 @@ base:has_initializer a owl:ObjectProperty ;
     rdfs:domain base:OnnxGraph ;
     rdfs:range base:Initializer .
 
-base:has_input_info a owl:ObjectProperty ;
-    rdfs:label "has_input_info" ;
-    rdfs:domain base:Function ;
-    rdfs:range base:ValueInfo .
-
 base:has_inputs a owl:ObjectProperty ;
     rdfs:label "has_inputs" ;
     rdfs:domain base:Node ;
@@ -302,11 +307,6 @@ base:has_operator_status a owl:ObjectProperty ;
     rdfs:label "has_operator_status" ;
     rdfs:domain base:Operator ;
     rdfs:range base:OperatorStatus .
-
-base:has_output_info a owl:ObjectProperty ;
-    rdfs:label "has_output_info" ;
-    rdfs:domain base:Function ;
-    rdfs:range base:ValueInfo .
 
 base:has_outputs a owl:ObjectProperty ;
     rdfs:label "has_outputs" ;
@@ -364,10 +364,6 @@ base:imports_operators_set a owl:ObjectProperty ;
     rdfs:domain base:Function,
         base:Model ;
     rdfs:range base:OperatorSet .
-
-base:input_function a owl:DatatypeProperty ;
-    rdfs:label "input_function" ;
-    rdfs:domain base:Function .
 
 base:ir_version a owl:DatatypeProperty ;
     rdfs:label "ir_version" ;
@@ -437,10 +433,6 @@ base:name a owl:DatatypeProperty ;
         base:Tensor,
         base:TensorAnnotation,
         base:ValueInfo .
-
-base:output_function a owl:DatatypeProperty ;
-    rdfs:label "output_function" ;
-    rdfs:domain base:Function .
 
 base:overload a owl:DatatypeProperty ;
     rdfs:label "overload" ;

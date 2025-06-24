@@ -1,7 +1,7 @@
 # ONNX2RDF
 
 [![License](https://img.shields.io/github/license/JorgeMIng/ONNX2RDF)](LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15681919.svg)](https://doi.org/10.5281/zenodo.15681919)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15677129.svg)](https://doi.org/10.5281/zenodo.15677129)
 [![Cite this software](https://img.shields.io/badge/Cite%20this-CFF-blue)](https://github.com/JorgeMIng/ONNX2RDF/blob/main/CITATION.cff)
 ![Python](https://img.shields.io/pypi/pyversions/onnx-2-rdf)
 [![PyPI version](https://badge.fury.io/py/onnx-2-rdf.svg)](https://badge.fury.io/py/onnx2rdf)
@@ -236,8 +236,8 @@ The parser will **infer** a `model_name_path` from the ONNX file's location:
 | Input Path             | Inferred `model_name_path`              | Example URI                                                                 |
 |------------------------|-----------------------------------------|------------------------------------------------------------------------------|
 | `resnet.onnx`          | `resnet`                               | `http://base.onnx.model.com/resource/resnet/Node/node_id`                    |
-| `models/`              | `models.mobilenet` (for `models/mobilenet.onnx`) | `http://base.onnx.model.com/resource/models.mobilenet/Node/node_id`         |
-| `models/exp/set1/`     | `set1.exp.mobilenet` (for `models/exp/set1/mobilenet.onnx`) | `http://base.onnx.model.com/resource/set1.exp.mobilenet/Node/node_id`       |
+| `models`              | `models.mobilenet` (for `models/mobilenet.onnx`) | `http://base.onnx.model.com/resource/models.mobilenet/Node/node_id`         |
+| `models/exp`     | `exp.set1.mobilenet` (for `models/exp/set1/mobilenet.onnx`) | `http://base.onnx.model.com/resource/exp.set1.mobilenet/Node/node_id`       |
 
 ---
 
@@ -254,9 +254,9 @@ Any slashes (`/`) in `--model_name_path` are converted to dots (`.`) for consist
 
 | Input Path             | `model_name_path`  | Final `model_name_path`| Example URI                                                                 |
 |------------------------|-----------------------|------------------------------------------------|------------------------------------------------------------------------------|
-| `resnet.onnx`          | `hugg/resnet`         | `hugg.resnet`                                   | `http://base.onnx.model.com/resource/hugg.resnet/Node/node_id`              |
-| `models/`              | `experiments/v1`      | `experiments.v1.mobilenet` (replacing `models`) | `http://base.onnx.model.com/resource/experiments.v1.mobilenet/Node/node_id` |
-| `models/a/b/`          | `research/cases`      | `research.cases.a.b.model` (replacing `models`) | `http://base.onnx.model.com/resource/research.cases.a.b.model/Graph/graph_id`  |
+| `resnet.onnx`          | `hugg/resnet`         | `hugg/resnet`                                   | `http://base.onnx.model.com/resource/hugg/resnet/Node/node_id`              |
+| `models`              | `experiments/v1`      | `experiments/v1.mobilenet` (for `models/mobilenet.onnx`) | `http://base.onnx.model.com/resource/experiments/v1.mobilenet/Node/node_id` |
+| `models`          | `research/cases`      | `research/cases.a.b.model` (for `models/a/b/model.onnx`) | `http://base.onnx.model.com/resource/research/cases.a.b.model/Graph/graph_id`  |
 
 
 
