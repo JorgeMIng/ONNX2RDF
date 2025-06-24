@@ -20,13 +20,9 @@ def get_func_element_id(function):
 
 def repair_function(function,func_pos):
     
-    element_id=f"Func-name-{function["name"]}"
-    if function["domain"]!="":
-        element_id=f"{element_id}-domain-{function["domain"]}"
-    if function["overload"]!="":
-        element_id=f"{element_id}-overload-{function["overload"]}"
     
-    function["element_id"]=f"{get_func_element_id(function)}"
+    function["element_id"]=f"Func-{get_func_element_id(function)}"
+    element_id=function["element_id"]
     
     all_correct=True
     
@@ -78,12 +74,12 @@ def repair_function(function,func_pos):
     else:
         function["valueInfo"]=[]
 
-    connect_input_output(function["valueInfo"],function["input"],function["output"])
+    connect_input_output(function["valueInfo"],function["input"],function["output"],element_id)
     
     return all_correct
 
 
-def connect_input_output(values:list,inputs:list,outputs:list):
+def connect_input_output(values:list,inputs:list,outputs:list,element_id):
     for value in values:
         if value["name"] in inputs:
             value["is_input"]=value["element_id"]
@@ -91,8 +87,14 @@ def connect_input_output(values:list,inputs:list,outputs:list):
             value["is_output"]=value["element_id"]
         else:
             value["is_value"]=value["element_id"]
-        
-            
+    for input_name in inputs:
+        if input_name not in values:
+            new_element_id = f"{element_id}-valuesInfo-{input_name}"
+            values.append({"is_input":new_element_id,"name":input_name})   
+    for output_name in inputs:
+        if output_name not in values:
+            new_element_id = f"{element_id}-valuesInfo-{output_name}"
+            values.append({"is_output":new_element_id,"name":output_name})
 
 def check_fields_functions(function):
     if "opsetImport" not in function or not isinstance(function["opsetImport"],list):

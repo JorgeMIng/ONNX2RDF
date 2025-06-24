@@ -323,9 +323,9 @@ mappings:
 
      - predicates: base:has_value_info
        objects: modelR:ValueInfo/$(valueInfo[*].is_value)~iri
-     - predicates: base:has_input_info
+     - predicates: base:has_func_input
        objects: modelR:ValueInfo/$(valueInfo[*].is_input)~iri
-     - predicates: base:has_output_info
+     - predicates: base:has_func_output
        objects: modelR:ValueInfo/$(valueInfo[*].is_output)~iri
 
      - predicates: base:has_default_attribute
@@ -334,8 +334,7 @@ mappings:
        objects: modelR:Node/$(element_id)-Node-$(node[*].name)~iri
      - predicates: base:has_metadata_property
        objects: modelR:MetadataProperty/$(metadataProps[*].element_id)~iri
-     - [base:input_function,"$(input)",xsd:string]
-     - [base:output_function,"$(output)",xsd:string]
+     
 
   operator_sets_conn:
     sources: operator_sets_data
