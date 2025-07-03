@@ -15,7 +15,7 @@ def repair_initializers(graph,start_error_messege="\n"):
         if "name" in tensor and tensor["name"] not in names:
             name=tensor["name"]
             names.append(name)
-            check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege}Initializer ({name}) at pos {idx} has a wrong format {LINE_WITH_TAB}",tensor_id=f"Graph-{graph["name"]}-Initializer")
+            check = check_tensor_complex(tensor,start_error_messege=f"{start_error_messege}Initializer ({name}) at pos {idx} has a wrong format {LINE_WITH_TAB}",tensor_id=f"Graph-{graph["name"]}-Initializer-{name}")
         elif "name" in tensor:
             warnings.warn(f"{start_error_messege}Initializer ({name}) at pos {idx}  Has not unique name -> Initializer Being deleted")
             del graph["initializer"][idx]
@@ -41,7 +41,7 @@ def repair_initializers(graph,start_error_messege="\n"):
         except Exception:
             pass
             
-        check = check_sparse_complex(tensor,start_error_messege=f"Sparse Initializer ({tmp_name})  at pos {idx} has a wrong format {LINE_WITH_TAB}",tensor_id=f"Graph-{graph["name"]}-SparseInitializer")
+        check = check_sparse_complex(tensor,start_error_messege=f"Sparse Initializer ({tmp_name})  at pos {idx} has a wrong format {LINE_WITH_TAB}",tensor_id=f"Graph-{graph["name"]}-SparseInitializer-{tmp_name}")
         if not check:
             if tmp_name:
                 warnings.warn(f"{start_error_messege}Sparse Initializer ({tmp_name}) at pos {idx} -> InitializerBeing deleted")
