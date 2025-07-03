@@ -292,7 +292,7 @@ mappings:
    po:
      - [a, base:Operator]
      - [base:name, $(name),xsd:string]
-     - [base:name, $(domain),xsd:string]
+     - [base:domain, $(domain),xsd:string]
      - [base:since_version, $(since_version),xsd:string]
      
      - [dc:description, $(docString),xsd:string]
