@@ -36,6 +36,7 @@ def repair_function(function,func_pos):
             all_correct=False
             warnings.warns(f"The function {function["name"]} defined at pos {func_pos} has a wrong \"output\" variable {LINE_WITH_TAB} The output_entry at pos {idx} is not a string {LINE_WITH_TAB} Removing Function")
     attribute_list=[]
+    new_attr_list=[]
     if "attribute" in function:
         if not isinstance(function["attribute"],list):
             all_correct=False
@@ -47,6 +48,8 @@ def repair_function(function,func_pos):
                     warnings.warns(f"The function {function["name"]} defined at pos {func_pos} has a wrong \"attribute\" variable {LINE_WITH_TAB} The attribute_entry at pos {idx} is not a string {LINE_WITH_TAB} Removing Function")
                 else:
                     attribute_list.append(attr)
+                    new_attr_list.append({"name":attr,"element_id":f"{element_id}-Attribute-{attr}"})
+        function["attribute"]=new_attr_list
     if "docString" in function and not isinstance(function["docString"],str):
         warnings.warns(f"The function {function["name"]} defined at pos {func_pos} has a wrong format {LINE_WITH_TAB} The \"docString\" param is not a string -> Removing \"docString\"")
         function["docString"]=""

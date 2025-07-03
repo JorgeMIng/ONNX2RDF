@@ -265,9 +265,9 @@ def repair_attribute_data(attribute,enum_type:AttrType,start_error_messege,eleme
             correct_all=False
         if is_list:
             new_value={"value":value}
-            new_value["index"]=idx
+            new_value["index"]=idx+1
             if idx < len(values)-1:
-                new_value["next_index"]=idx+1
+                new_value["next_index"]=idx+2
             if idx == len(values)-1:
                 new_value["last_index"]=""
             new_value["type"]=enum_type.name

@@ -52,9 +52,9 @@ def check_sparse_complex(tensor,start_error_messege:str="",check_storage_data=Fa
             if invalid_string_number(item):
                 warnings.warn(f"\n{start_error_messege} \"dim\" entry at pos {pos} is not a integer")
                 return False,None
-            shape = {"dimValue":int(item),"index":pos,"tensor_id":tensor_id}
+            shape = {"dimValue":int(item),"index":pos+1,"tensor_id":tensor_id}
             if pos < len(tensor["dims"])-1:
-               shape["next_index"]=pos+1
+               shape["next_index"]=pos+2
             if pos == len(tensor["dims"])-1:
                shape["last_index"]=""
             tensor["shape"].append(shape)

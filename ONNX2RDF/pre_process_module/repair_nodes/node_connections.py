@@ -186,9 +186,9 @@ def get_new_connection_list(connections,connections_names:dict,node_name,is_outp
 
 
     for idx,conn in enumerate(new_connections):
-        conn["index"]=idx
+        conn["index"]=idx+1
         if idx < len(new_connections)-1:
-            conn["next_index"]=idx+1
+            conn["next_index"]=idx+2
         if idx == len(new_connections)-1:
             conn["last_index"]=""
         

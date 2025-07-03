@@ -22,7 +22,7 @@ def check_dims_simple(dims,start_error_messege:str="",tensor_id=None):
         if invalid_string_number(dim):
             error_messege=f"{start_error_messege} The dim at pos {idx} of \"dims\" param is not a number"
             return error_messege
-        dims[idx]= {"dimValue":int(dim),"index":idx,"last_index":"","next_index":idx+1}
+        dims[idx]= {"dimValue":int(dim),"index":idx+1,"last_index":"","next_index":idx+2}
         if tensor_id!=None and isinstance(tensor_id,str):
             dims[idx]["tensor_id"]=tensor_id
 
@@ -80,9 +80,9 @@ def check_complex_dims(shape,start_error_messege:str="",tensor_id=None):
         if error_messege!=None:
             return error_messege,False
 
-        shape["dim"][idx]["index"]= idx
+        shape["dim"][idx]["index"]= idx+1
         shape["dim"][idx]["last_index"]= ""
-        shape["dim"][idx]["next_index"]= idx+1
+        shape["dim"][idx]["next_index"]= idx+2
         if tensor_id!=None and isinstance(tensor_id,str):
             shape["dim"][idx]["tensor_id"]=tensor_id
 

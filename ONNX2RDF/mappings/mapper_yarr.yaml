@@ -208,10 +208,20 @@ sources:
     access: data_mapping/model_data.json
     referenceFormulation: jsonpath
     iterator: "$..attribute[*]"
+  
   all_attributes_list_entry:
     access: data_mapping/model_data.json
     referenceFormulation: jsonpath
     iterator: "$..attribute[*].typed_list[*]"
+
+  all_attributes_func:
+    access: data_mapping/model_data.json
+    referenceFormulation: jsonpath
+    iterator: "$..attributeProto[*]"
+  all_attributes_func_entry:
+    access: data_mapping/model_data.json
+    referenceFormulation: jsonpath
+    iterator: "$..attributeProto[*].typed_list[*]"
 
   graph_data:
     access: data_mapping/model_data.json
@@ -327,8 +337,10 @@ mappings:
        objects: modelR:ValueInfo/$(valueInfo[*].is_input)~iri
      - predicates: base:has_func_output
        objects: modelR:ValueInfo/$(valueInfo[*].is_output)~iri
+     - predicates: base:defines_attribute
+       objects: modelR:Attribute/$(attribute[*].element_id)~iri
 
-     - predicates: base:has_default_attribute
+     - predicates: base:defines_default_attribute
        objects: modelR:Attribute/$(attributeProto[*].element_id)~iri
      - predicates: base:has_node
        objects: modelR:Node/$(element_id)-Node-$(node[*].name)~iri
@@ -497,7 +509,7 @@ mappings:
       - [a, base:DimEntry]
       - [rdfs:subClassOf, olo:Slot~iri]
       - [base:dim_value, $(dimValue),xsd:integer]
-      - [base:dim_name, $(dimParam),xsd:integer]
+      - [base:dim_name, $(dimParam),xsd:string]
       - [olo:index, "$(index)",xsd:positiveInteger]
 
       - predicates: olo:ordered_list
@@ -657,7 +669,9 @@ mappings:
         objects: modelR:Function/$(func_id)~iri
               
   attributes:
-    sources: all_attributes
+    sources: 
+      - all_attributes
+      - all_attributes_func
     subjects: modelR:Attribute/$(element_id)
     po:
         - [a, base:Attribute]
@@ -698,7 +712,7 @@ mappings:
               - [str1, "$(type)"]
               - [str2, "STRING"]
         - predicates: base:has_attribute_value
-          objects: modelR:GraphValue/$(element_id)-$(type)~iri
+          objects: modelR:Graph/$(element_id)-Graph-$(name)~iri
           condition:
             function: equal
             parameters:
@@ -729,7 +743,9 @@ mappings:
 
    
   attributes_list_type:
-    sources: all_attributes
+    sources: 
+      - all_attributes
+      - all_attributes_func
     subjects: modelR:TypedOrderList/$(element_id)-$(type)$(is_list)
     po:
         - [a, base:TypedOrderedList]
@@ -739,7 +755,9 @@ mappings:
 
  
   attributes_list_entry:
-    sources: all_attributes_list_entry
+    sources: 
+      - all_attributes_list_entry
+      - all_attributes_func_entry
     subjects: modelR:TypedOrderedListItem/$(element_id)-idx$(index)
     po:
         - [a, base:TypedOrderedListItem]
@@ -780,7 +798,7 @@ mappings:
               - [str1, "$(type)"]
               - [str2, "STRINGS"]
         - predicates: base:item_has_value
-          objects: modelR:GraphValue/$(element_id)-idx$(index)~iri
+          objects: modelR:Graph/$(element_id)-Graph-$(name)~iri
           condition:
             function: equal
             parameters:
@@ -812,7 +830,9 @@ mappings:
 
 
   attribute_simple_type:
-   sources: all_attributes
+   sources: 
+    - all_attributes
+    - all_attributes_func
 
    subjects: modelR:SimpleValue/$(element_id)-$(type)
    condition:
@@ -867,7 +887,9 @@ mappings:
             - [str2, "FLOAT"]                     
 
   attribute_simple_type_list:
-   sources: all_attributes_list_entry
+   sources: 
+    - all_attributes_list_entry
+    - all_attributes_func_entry
    subjects: modelR:SimpleValue/$(element_id)-idx$(index)
    condition:
     function: grel:boolean_or
@@ -937,7 +959,7 @@ mappings:
       - [str2, "seq"]   
    po:
       - [a, base:SequenceType]
-      - [rdfs:subClassOf, base:OnnxTypes~iri]
+      - [rdfs:subClassOf, base:OnnxType~iri]
       - [base:denotation,$(denotation),xsd:string]
       - predicates: base:forces_type
         objects: modelR:SequenceType/$(element_id)-Seq~iri
@@ -957,7 +979,7 @@ mappings:
       - [str2, "opt"]   
    po:
       - [a, base:OptionalType]
-      - [rdfs:subClassOf, base:OnnxTypes~iri]
+      - [rdfs:subClassOf, base:OnnxType~iri]
       - [base:denotation,$(denotation),xsd:string]
       - predicates: base:forces_type
         objects: modelR:OptionalType/$(element_id)-Opt~iri
@@ -977,7 +999,7 @@ mappings:
       - [str2, "map"]   
    po:
       - [a, base:MapType]
-      - [rdfs:subClassOf, base:OnnxTypes~iri]
+      - [rdfs:subClassOf, base:OnnxType~iri]
       - [base:denotation,$(denotation),xsd:string]
       
       - predicates: base:forces_type
@@ -1000,7 +1022,7 @@ mappings:
       - [str2, "tensor"]   
    po:
       - [a, base:TensorType]
-      - [rdfs:subClassOf, base:OnnxTypes~iri]
+      - [rdfs:subClassOf, base:OnnxType~iri]
       - [base:denotation,$(denotation),xsd:string]
       - predicates: base:has_shape
         objects: modelR:TensorShape/$(tensorType.tensor_id)$(tensorType.is_shape)~iri
@@ -1022,7 +1044,7 @@ mappings:
       - [str2, "sparse"]   
    po:
     - [a, base:SparseType]
-    - [rdfs:subClassOf, base:OnnxTypes~iri]
+    - [rdfs:subClassOf, base:OnnxType~iri]
     - [base:denotation,$(denotation),xsd:string]
     - predicates: base:has_shape
       objects: modelR:TensorShape/$(sparseTensorType.tensor_id)$(sparseTensorType.is_shape)~iri
@@ -1128,18 +1150,6 @@ mappings:
     - predicates: base:has_tensor_annotation
       objects: modelR:TensorAnnotation/$(quantizationAnnotation[*].element_id)~iri
 
-
-      
-
-  att_graph_value:
-    sources:
-      - att_values
-      - att_list_values
-    subjects: modelR:GraphValue/$(element_id)$(is_subgraph)
-    po:
-      - [a, base:GraphValue]
-      - predicates: base:has_graph
-        objects: modelR:Graph/$(element_id)-Graph-$(name)~iri
 
 
 
