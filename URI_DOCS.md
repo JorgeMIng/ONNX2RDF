@@ -22,6 +22,13 @@ The base formats for every URI are:
 
 `model_name_path` is a semi-custom parameter that is build dynamically depending on the `input-path` given (file or folder with files) and a parameter given by the user
 
+`resource_type` is the class name of the resource the uri is representing
+
+`resource_id` is the semantically created identifier of a instance of the class
+
+
+
+
 
 ## Model and Main Graph
 
@@ -36,7 +43,6 @@ The base formats for every URI are:
 - 
     <font size="3">{base_url}{model_name_path}`/Graph/Graph-{graph_name}`
 
-- `TensorAnnotation`
 
 
 ##  Nodes 
@@ -69,6 +75,8 @@ The base formats for every URI are:
 
     <font size="3">{base_onnx_url}`/Operators/name-{name}-domain{domain}-v{version}`
 
+    <font size="3">{base_url}{model_name_path}`/Operators/name-{name}-domain{domain}-v{version}` (Custom operator)
+
 - `Empty domain` (domain is default ONNX domain):
 
     <font size="3">{base_onnx_url}`/Operators/name-{name}-v{version}`
@@ -90,6 +98,8 @@ The base formats for every URI are:
 - `Non Empty` domain
 
     <font size="3">{base_onnx_url}`/OperatorSet/domain{domain}-v{version}`
+
+    <font size="3">{base_url}{model_name_path}`/OperatorSet/domain{domain}-v{version}` (Custom sets)
 
 - `Empty domain` (domain is default ONNX domain):
 
@@ -177,8 +187,6 @@ The base formats for every URI are:
 <html>
     <font size="3">{base_url}{model_name_path}`/Tensor/{resource_id}-{tensor_name}`
 </html>
--tensor_annotation-{tensor_name}
-
 
 
 - `tensor_name` in case empty will not be added at the URI 
@@ -248,8 +256,8 @@ The base formats for every URI are:
 
     | Name            | URI              | ONNX ID | Description                            | Name             | URI                   | ONNX ID | Description                            |
     |-----------------|------------------|--------|----------------------------------------|------------------|------------------------|--------|----------------------------------------|
-    | UNDEFINED       | DataUndefined        | 0      | Unspecified data type                  | FLOAT16          | float16               | 10     | 16-bit IEEE 754 half-precision         |
-    | FLOAT           | DataFLoat            | 1      | 32-bit float                           | DOUBLE           | double                | 11     | 64-bit float (`float64`)               |
+    | UNDEFINED       | DataUndefined        | 0      | Unspecified data type                  | FLOAT16          | Float16               | 10     | 16-bit IEEE 754 half-precision         |
+    | FLOAT           | DataFloat            | 1      | 32-bit float                           | DOUBLE           | DataDouble                | 11     | 64-bit float (`float64`)               |
     | UINT8           | UInt8            | 2      | 8-bit unsigned integer (`uint8_t`)    | UINT32           | UInt32                | 12     | 32-bit unsigned integer                |
     | INT8            | Int8             | 3      | 8-bit signed integer (`int8_t`)       | UINT64           | UInt64                | 13     | 64-bit unsigned integer                |
     | UINT16          | UInt16           | 4      | 16-bit unsigned integer (`uint16_t`)  | COMPLEX64        | Complex64             | 14     | Complex with `float32` components      |
@@ -259,8 +267,8 @@ The base formats for every URI are:
     | STRING          | DataString           | 8      | UTF-8 string                           | FLOAT8E4M3FNUZ   | Float8e4m3fnuz        | 18     | 8-bit float (NaN, no Inf, no -0)       |
     | BOOL            | DataBool             | 9      | Boolean                                | FLOAT8E5M2       | Float8e5m2            | 19     | 8-bit float (IEEE754, NaN + Inf)       | 
     ||||||||
-    | FLOAT8E5M2FNUZ    | float8e5m2fnuz     | 20    | 8-bit float (IEEE754, NaN, no -0)          | INT4        | int4        | 22    | 4-bit signed integer                   |
-    | UINT4       | uint4       | 21    | 4-bit unsigned integer           | FLOAT4E2M1        | float4e2m1         | 23    | 4-bit float (2 exponent, 1 mantissa bits)  |
+    | FLOAT8E5M2FNUZ    | Float8e5m2fnuz     | 20    | 8-bit float (IEEE754, NaN, no -0)          | INT4        | Int4        | 22    | 4-bit signed integer                   |
+    | UINT4       | Uint4       | 21    | 4-bit unsigned integer           | FLOAT4E2M1        | Float4e2m1         | 23    | 4-bit float (2 exponent, 1 mantissa bits)  |
 
 
 ### SparseTensor
