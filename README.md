@@ -291,7 +291,6 @@ See [LICENSE](LICENSE) for more information.
 - Built using the [ONNX](https://onnx.ai/) Python API.
 - RML Mapping powered by the [RMLMapper](https://github.com/RMLio/rmlmapper-java).
 - YARRRML parsing supported via [@rmlio/yarrrml-parser](https://www.npmjs.com/package/@rmlio/yarrrml-parser).
-- HDT output enabled via [PySHACL](https://github.com/RDFLib/pySHACL) and [RDFLib](https://github.com/RDFLib/rdflib).
 - Developed by OEG (Ontology Engineering Group) of Polytechnic University of Madrid.
 
 
