@@ -292,6 +292,7 @@ See [LICENSE](LICENSE) for more information.
 - RML Mapping powered by the [RMLMapper](https://github.com/RMLio/rmlmapper-java).
 - YARRRML parsing supported via [@rmlio/yarrrml-parser](https://www.npmjs.com/package/@rmlio/yarrrml-parser).
 - HDT output enabled via [PySHACL](https://github.com/RDFLib/pySHACL) and [RDFLib](https://github.com/RDFLib/rdflib).
+- Developed by OEG (Ontology Engineering Group) of Polytechnic University of Madrid.
 
 
 
@@ -303,7 +304,7 @@ If you use this software, please cite it as or refer to [ZENODO (link)](https://
 @software{martin_izquierdo_2025_onnx2rdf,
   author       = {Jorge Martín Izquierdo},
   title        = {ONNX to RDF Parser},
-  version      = {0.1.3},
+  version      = {0.1.4},
   date         = {2025-06-16},
   doi          = {10.5281/zenodo.15681919},
   url          = {https://github.com/JorgeMIng/ONNX2RDF},

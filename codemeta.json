@@ -17,7 +17,7 @@
     ],
     "codeRepository": "https://github.com/JorgeMIng/ONNX2RDF",
     "dateCreated": "2025-06-16",
-    "dateModified": "2025-06-17",
+    "dateModified": "2025-07-05",
     "datePublished": "2025-06-16",
     "description": "ONNX2RDF is a pipeline for converting ONNX files to a RDF format.",
     "identifier": "https://doi.org/10.5281/zenodo.15677129",
@@ -40,7 +40,7 @@
         "Python 3"
     ],
     "softwareRequirements": "https://github.com/RMLio/yarrrml-parser",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "developmentStatus": "wip",
     "isSourceCodeOf": "Hugginface ONNX2RDF Parser",
     "issueTracker": "https://github.com/JorgeMIng/ONNX2RDF/issues"
