@@ -16,17 +16,17 @@ base: a owl:Ontology ;
 
 base:BFloat16 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 15 ;
+    skos:altLabel 16 ;
     skos:prefLabel "BFLOAT16"^^xsd:string .
 
 base:Complex128 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 14 ;
+    skos:altLabel 15 ;
     skos:prefLabel "COMPLEX128"^^xsd:string .
 
 base:Complex64 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 13 ;
+    skos:altLabel 14 ;
     skos:prefLabel "COMPLEX64"^^xsd:string .
 
 base:DataBool a base:ElementType,
@@ -36,8 +36,8 @@ base:DataBool a base:ElementType,
 
 base:DataDouble a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 10 ;
-    skos:prefLabel "FLOAT16"^^xsd:string .
+    skos:altLabel 11 ;
+    skos:prefLabel "DOUBLE"^^xsd:string .
 
 base:DataFloat a base:ElementType,
         owl:NamedIndividual ;
@@ -60,24 +60,34 @@ base:Experimental a base:OperatorStatus,
     skos:altLabel 0 ;
     skos:prefLabel "EXPERIMENTAL"^^xsd:string .
 
+base:Float16 a base:ElementType,
+        owl:NamedIndividual ;
+    skos:altLabel 10 ;
+    skos:prefLabel "FLOAT16"^^xsd:string .
+
+base:Float4e2m1 a base:ElementType,
+        owl:NamedIndividual ;
+    skos:altLabel 23 ;
+    skos:prefLabel "FLOAT4E2M1"^^xsd:string .
+
 base:Float8_e4m3fn a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 16 ;
+    skos:altLabel 17 ;
     skos:prefLabel "FLOAT8E4M3FN"^^xsd:string .
 
 base:Float8_e4m3fnuz a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 17 ;
+    skos:altLabel 18 ;
     skos:prefLabel "FLOAT8E4M3FNUZ"^^xsd:string .
 
 base:Float8_e5m2 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 18 ;
+    skos:altLabel 19 ;
     skos:prefLabel "FLOAT8E5M2"^^xsd:string .
 
 base:Float8_e5m2fnuz a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 19 ;
+    skos:altLabel 20 ;
     skos:prefLabel "FLOAT8E5M2FNUZ"^^xsd:string .
 
 base:Int16 a base:ElementType,
@@ -94,7 +104,7 @@ base:Int32 a base:ElementType,
 
 base:Int4 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 21 ;
+    skos:altLabel 22 ;
     skos:prefLabel "INT4"^^xsd:string .
 
 base:Int64 a base:ElementType,
@@ -124,27 +134,21 @@ base:Stable a base:OperatorStatus,
     skos:altLabel 1 ;
     skos:prefLabel "STABLE"^^xsd:string .
 
-base:UInt16 a base:ElementType,
-        base:KeyType,
-        owl:NamedIndividual ;
-    skos:altLabel 4 ;
-    skos:prefLabel "UINT16"^^xsd:string .
-
 base:UInt32 a base:ElementType,
         base:KeyType,
         owl:NamedIndividual ;
-    skos:altLabel 11 ;
+    skos:altLabel 12 ;
     skos:prefLabel "UINT32"^^xsd:string .
 
 base:UInt4 a base:ElementType,
         owl:NamedIndividual ;
-    skos:altLabel 20 ;
+    skos:altLabel 21 ;
     skos:prefLabel "UINT4"^^xsd:string .
 
 base:UInt64 a base:ElementType,
         base:KeyType,
         owl:NamedIndividual ;
-    skos:altLabel 12 ;
+    skos:altLabel 13 ;
     skos:prefLabel "UINT32"^^xsd:string .
 
 base:UInt8 a base:ElementType,
@@ -152,6 +156,12 @@ base:UInt8 a base:ElementType,
         owl:NamedIndividual ;
     skos:altLabel 2 ;
     skos:prefLabel "UINT8"^^xsd:string .
+
+base:Unt16 a base:ElementType,
+        base:KeyType,
+        owl:NamedIndividual ;
+    skos:altLabel 4 ;
+    skos:prefLabel "UINT16"^^xsd:string .
 
 base:applies_operator a owl:ObjectProperty ;
     rdfs:label "applies_operator" ;
@@ -174,9 +184,21 @@ base:defines a owl:ObjectProperty ;
     rdfs:range base:Function,
         base:Operator .
 
+base:defines_attribute a owl:ObjectProperty ;
+    rdfs:label "defines_attribute" ;
+    rdfs:domain base:Function,
+        base:Operator ;
+    rdfs:range base:Attribute .
+
+base:defines_default_attribute a owl:ObjectProperty ;
+    rdfs:label "defines_default_attribute" ;
+    rdfs:domain base:Function,
+        base:Operator ;
+    rdfs:range base:Attribute .
+
 base:denotation a owl:DatatypeProperty ;
     rdfs:label "denotation" ;
-    rdfs:domain base:OnnxTypes .
+    rdfs:domain base:OnnxType .
 
 base:dim_name a owl:DatatypeProperty ;
     rdfs:label "dim_name" ;
@@ -201,7 +223,7 @@ base:forces_type a owl:ObjectProperty ;
         base:OptionalType,
         base:SequenceType,
         base:ValueInfo ;
-    rdfs:range base:OnnxTypes .
+    rdfs:range base:OnnxType .
 
 base:from_node a owl:ObjectProperty ;
     rdfs:label "from_node" ;
@@ -217,18 +239,12 @@ base:has_attribute_value a owl:ObjectProperty ;
     rdfs:label "has_attribute_value" ;
     rdfs:domain base:Attribute ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( base:SimpleValue base:OnnxTypes base:GraphValue base:TypedOrderedList ) ] .
+            owl:unionOf ( base:OnnxType base:OnnxGraph base:TypedOrderedList base:SimpleValue base:Tensor base:SparseTensor ) ] .
 
 base:has_data_location a owl:ObjectProperty ;
     rdfs:label "has_data_location" ;
     rdfs:domain base:Tensor ;
     rdfs:range base:DataLocation .
-
-base:has_default_attribute a owl:ObjectProperty ;
-    rdfs:label "has_default_attribute" ;
-    rdfs:domain base:Function,
-        base:Operator ;
-    rdfs:range base:Attribute .
 
 base:has_element_type a owl:ObjectProperty ;
     rdfs:label "has_element_type" ;
@@ -255,11 +271,6 @@ base:has_functions a owl:ObjectProperty ;
     rdfs:label "has_functions" ;
     rdfs:domain base:Model ;
     rdfs:range base:Function .
-
-base:has_graph a owl:ObjectProperty ;
-    rdfs:label "has_graph" ;
-    rdfs:domain base:GraphValue ;
-    rdfs:range base:OnnxGraph .
 
 base:has_graph_input a owl:ObjectProperty ;
     rdfs:label "has_graph_input" ;
@@ -407,7 +418,7 @@ base:item_has_value a owl:ObjectProperty ;
     rdfs:label "item_has_value" ;
     rdfs:domain base:TypedOrderedListItem ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( base:SimpleValue base:GraphValue base:Tensor base:SparseTensor base:OnnxTypes ) ] .
+            owl:unionOf ( base:Tensor base:SparseTensor base:OnnxType base:SimpleValue base:OnnxGraph ) ] .
 
 base:key a owl:DatatypeProperty ;
     rdfs:label "key" ;
@@ -430,6 +441,7 @@ base:name a owl:DatatypeProperty ;
         base:NodeOutput,
         base:OnnxGraph,
         base:Operator,
+        base:SparseTensor,
         base:Tensor,
         base:TensorAnnotation,
         base:ValueInfo .
@@ -562,11 +574,11 @@ skos:prefLabel a owl:DatatypeProperty ;
 
 base:OptionalType a owl:Class ;
     rdfs:label "Optional Type" ;
-    rdfs:subClassOf base:OnnxTypes .
+    rdfs:subClassOf base:OnnxType .
 
 base:SequenceType a owl:Class ;
     rdfs:label "Sequence Type" ;
-    rdfs:subClassOf base:OnnxTypes .
+    rdfs:subClassOf base:OnnxType .
 
 base:Initializer a owl:Class ;
     rdfs:label "Initializer" ;
@@ -575,21 +587,18 @@ base:Initializer a owl:Class ;
 
 base:MapType a owl:Class ;
     rdfs:label "Map Type" ;
-    rdfs:subClassOf base:OnnxTypes .
+    rdfs:subClassOf base:OnnxType .
 
 base:SparseType a owl:Class ;
     rdfs:label "Sparse Type" ;
-    rdfs:subClassOf base:OnnxTypes .
+    rdfs:subClassOf base:OnnxType .
 
 base:TensorType a owl:Class ;
     rdfs:label "Tensor Type" ;
-    rdfs:subClassOf base:OnnxTypes .
+    rdfs:subClassOf base:OnnxType .
 
 base:DataLocation a owl:Class ;
     rdfs:label "Data Location" .
-
-base:GraphValue a owl:Class ;
-    rdfs:label "Graph Value" .
 
 base:NodeInputs a owl:Class ;
     rdfs:label "Node Inputs" ;
@@ -631,15 +640,9 @@ olo:OrderedList a owl:Class ;
 olo:Slot a owl:Class ;
     rdfs:label "Slot" .
 
-base:SparseTensor a owl:Class ;
-    rdfs:label "Sparse Tensor" .
-
 base:TypedOrderedListItem a owl:Class ;
     rdfs:label "Typed Ordered List Item" ;
     rdfs:subClassOf olo:Slot .
-
-base:Attribute a owl:Class ;
-    rdfs:label "Attribute" .
 
 base:DimEntry a owl:Class ;
     rdfs:label "Dim Entry" ;
@@ -648,6 +651,12 @@ base:DimEntry a owl:Class ;
 base:OperatorSet a owl:Class ;
     rdfs:label "Operator Set" .
 
+base:Attribute a owl:Class ;
+    rdfs:label "Attribute" .
+
+base:SparseTensor a owl:Class ;
+    rdfs:label "Sparse Tensor" .
+
 base:Node a owl:Class ;
     rdfs:label "Node" .
 
@@ -655,8 +664,8 @@ base:NodeOutput a owl:Class ;
     rdfs:label "Node Output" ;
     rdfs:subClassOf olo:Slot .
 
-base:OnnxTypes a owl:Class ;
-    rdfs:label "Onnx Types" .
+base:OnnxType a owl:Class ;
+    rdfs:label "Onnx Type" .
 
 base:KeyType a owl:Class ;
     rdfs:label "Key Type" .
