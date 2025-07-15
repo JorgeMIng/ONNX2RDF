@@ -40,7 +40,7 @@ You can also use the dockerfile (see below) which will prepare the enviroment.
 ### Option 1: Install from pip
 
 ```bash
-pip install onnx_2_rdf
+pip install onnx-2-rdf
 ```
 
 ### Option 2: Build from Source
